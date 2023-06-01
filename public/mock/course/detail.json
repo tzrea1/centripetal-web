@@ -1,0 +1,394 @@
+{
+  "code": 0,
+  "msg": "获取成功",
+  "data": {
+    "base": {
+      "title": "Vue2.5入门",
+      "rank": "中级",
+      "duration": "2小时13分钟",
+      "number": 93372,
+      "score": 96.2,
+      "teacher": {
+        "avatar": "https://img4.mukewang.com/5abe468b0001664107390741-80-80.jpg",
+        "name": "DellLee",
+        "job": "Web前端工程师"
+      }
+    },
+    "lastest": {
+      "percent": 73,
+      "chapter": "3-4 实现todolist的删除功能",
+      "duration": 121
+    },
+    "chapter": {
+      "introduce": "简介：对于很多刚接触Vue的同学，最难做到的就是编程思路的切换，这门课程，我们将通过形象的例子给大家讲解Vue的基础语法及编程思路，带大家快速的上手Vue的基础开发，这门课也包含了关于组件话和vue-cli等内容的基础讲解。",
+      "data": [
+        {
+          "title": "第1章 课程介绍",
+          "desc": "对课程讲解内容做完整陈述，帮助大家理清学习思路。",
+          "term": [
+            {
+              "title": "1-1 课程介绍",
+              "duration": "02:25",
+              "rate": 100
+            }
+          ]
+        },
+        {
+          "title": "第2章 Vue基础语法",
+          "desc": "本章节通过浅显易懂的实例来给大家讲解Vue2.0的基本语法，包含计算属性，侦听器，基础模版指令等。",
+          "term": [
+            {
+              "title": "2-1 创建第一个Vue实例",
+              "duration": "09:18",
+              "rate": 100
+            },
+            {
+              "title": "2-2 挂载点，模版与实例",
+              "duration": "04:24",
+              "rate": 100
+            },
+            {
+              "title": "2-3 Vue实例中的数据,事件和方法",
+              "duration": "12:26",
+              "rate": 100
+            },
+            {
+              "title": "2-4 Vue中的属性绑定和双向数据绑定",
+              "duration": "08:38",
+              "rate": 100
+            },
+            {
+              "title": "2-5 Vue中的计算属性和侦听器",
+              "duration": "09:00",
+              "rate": 100
+            },
+            {
+              "title": "2-6 v-if, v-show与v-for指令",
+              "duration": "09:21",
+              "rate": 100
+            }
+          ]
+        },
+        {
+          "title": "第3章 Vue中的组件",
+          "desc": "本章节讲解Vue中组件的概念和使用，结合对组件的完整理解，我们还将做一个TodoList功能模块。",
+          "term": [
+            {
+              "title": "3-1 todolist功能开发",
+              "duration": "06:50",
+              "rate": 100
+            },
+            {
+              "title": "3-2 todolist组件拆分",
+              "duration": "11:09",
+              "rate": 100
+            },
+            {
+              "title": "3-3 组件与实例的关系",
+              "duration": "05:03",
+              "rate": 100
+            },
+            {
+              "title": "3-4 实现todolist的删除功能",
+              "duration": "11:31",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "title": "第4章 Vue-cli的使用",
+          "desc": "本章节我们讲给大家介绍如何使用Vue-cli脚手架工具构建项目，并讲解单文件组件和局部全局样式的知识。",
+          "term": [
+            {
+              "title": "4-1 vue-cli的简介与使用",
+              "duration": "16:39",
+              "rate": 0
+            },
+            {
+              "title": "4-2 使用vue-cli开发TodoList",
+              "duration": "17:04",
+              "rate": 0
+            },
+            {
+              "title": "4-3 全局样式与局部样式",
+              "duration": "04:18",
+              "rate": 0
+            },
+            {
+              "title": "4-4 课程总结",
+              "duration": "04:04",
+              "rate": 0
+            }
+          ]
+        }
+      ]
+    },
+    "answer": {
+      "total": 36,
+      "resolve": 26,
+      "data": [
+        {
+          "title": "jest-enzyme支持typescript吗，根据官网怎么配都不行。",
+          "avatar": "https://img.mukewang.com/user/577220cf00016fe902790279-100-100.jpg",
+          "answer": {
+            "number": 1,
+            "content": "这个我没实验过，我自己研究下再告诉你"
+          },
+          "view": 5,
+          "time": "1",
+          "chapter": "5-4 Enzyme 的配置及使用",
+          "status": {
+            "resolve": true,
+            "type": "讲师回答",
+            "name": "DellLee"
+          }
+        },
+        {
+          "title": "老师，能不能把前几节课的代码上传一下",
+          "avatar": "https://img.mukewang.com/user/545847c10001f40702200220-100-100.jpg",
+          "answer": {
+            "number": 1,
+            "content": "基础的代码我没有留，同学还是照着敲一下吧。我回头找一下，如果有我赶紧就传上去。"
+          },
+          "view": 11,
+          "time": "1",
+          "chapter": "2-3 使用 Jest 修改自动化测试样例",
+          "status": {
+            "resolve": true,
+            "type": "讲师回答",
+            "name": "DellLee"
+          }
+        },
+        {
+          "title": "这一节课有个小问题",
+          "avatar": "https://img.mukewang.com/user/5a01401500018d9903000300-100-100.jpg",
+          "answer": {
+            "number": 1,
+            "content": "同学你好，我知道有这个小问题，但是如果解决的话，课程内容太多了，这是实现问题，和自动化测试关系不大，所以如果你希望完美做这个功能，继续TDD补充测试和逻辑即可。"
+          },
+          "view": 8,
+          "time": "2",
+          "chapter": "4-12 UndoList 编辑功能实现 (2)",
+          "status": {
+            "resolve": true,
+            "type": "讲师回答",
+            "name": "DellLee"
+          }
+        },
+        {
+          "title": "jest coverage配置问题",
+          "avatar": "https://img.mukewang.com/user/545863080001255902200220-100-100.jpg",
+          "view": 6,
+          "time": "2",
+          "chapter": "4-4 使用 TDD 的方式开发 Header 组件（1）"
+        },
+        {
+          "title": "jQuery requires a window with a document",
+          "avatar": "https://img.mukewang.com/user/5405241d00010c6501000100-100-100.jpg",
+          "answer": {
+            "number": 1,
+            "content": "你这个是不是没有配置jest的环境，没有模拟window对象呀"
+          },
+          "view": 30,
+          "time": "3",
+          "chapter": "3-5 Jest  中对 DOM 节点操作的测试",
+          "status": {
+            "resolve": true,
+            "type": "同学回答",
+            "name": "前端战五渣"
+          }
+        },
+        {
+          "title": "老师，做UI测试用哪个库比较好，主要就是测试一下是否精确的还原UI给的设计稿",
+          "avatar": "https://img.mukewang.com/user/57613b890001cba501000100-100-100.jpg",
+          "answer": {
+            "number": 1,
+            "content": "这个你需要用E2E测试，这门课程不讲这个东西"
+          },
+          "view": 12,
+          "time": "5",
+          "chapter": "2-5 Jest 中的匹配器",
+          "isMe": true,
+          "status": {
+            "resolve": true,
+            "type": "讲师回答",
+            "name": "DellLee"
+          }
+        }
+      ]
+    },
+    "comment": {
+      "limit": 30,
+      "rate": 31,
+      "score": {
+        "total": 9.6,
+        "content": 9.8,
+        "difficult": 9.6,
+        "logic": 9.5
+      },
+      "data": [
+        {
+          "name": "网络侦探",
+          "avatar": "https://img.mukewang.com/5599e8e100010c2110800960-40-40.jpg",
+          "score": 10,
+          "time": "2019-08-01",
+          "comment": "就弱基础Vue入门来说真的是很不错的入门课程，html引入Vue的写法和Vue的工程化开发方式也有介绍，认真学完再去学官方文档会轻松不少。",
+          "like": 11
+        },
+        {
+          "name": "Cassie_MC",
+          "avatar": "https://img3.mukewang.com/58f85af900019f2102240224-40-40.jpg",
+          "score": 10,
+          "time": "2019-08-01",
+          "comment": "非常适合入门了，没有上来就搭环境，而是深入浅出的结合小demo，把Vue的基础知识结构快速搭建起来，让入学者没有负担，还能有所收获。",
+          "like": 22
+        },
+        {
+          "name": "凌晨晚餐",
+          "avatar": "https://img.mukewang.com/5a3f4e1c0001b4bf02500250-40-40.jpg",
+          "score": 10,
+          "time": "2019-08-01",
+          "comment": "之前只用过react，看这个课程，对vue有了初步的了解，挺好的",
+          "like": 33
+        },
+        {
+          "name": "慕丝3222080",
+          "avatar": "https://img1.mukewang.com/5458655200013d9802200220-40-40.jpg",
+          "score": 8,
+          "time": "2019-08-01",
+          "comment": "感谢老师，入门很有帮助！",
+          "like": 44
+        },
+        {
+          "name": "熬夜会牙痛_代码打多会掉头发",
+          "avatar": "https://img2.mukewang.com/545862fe00017c2602200220-40-40.jpg",
+          "score": 6,
+          "time": "2019-08-01",
+          "comment": "老师讲的很细，思路清晰，视频时长也不算长，学起来很轻松",
+          "like": 55
+        },
+        {
+          "name": "网络侦探",
+          "avatar": "https://img.mukewang.com/5599e8e100010c2110800960-40-40.jpg",
+          "score": 10,
+          "time": "2019-08-01",
+          "comment": "就弱基础Vue入门来说真的是很不错的入门课程，html引入Vue的写法和Vue的工程化开发方式也有介绍，认真学完再去学官方文档会轻松不少。",
+          "like": 11
+        },
+        {
+          "name": "Cassie_MC",
+          "avatar": "https://img3.mukewang.com/58f85af900019f2102240224-40-40.jpg",
+          "score": 10,
+          "time": "2019-08-01",
+          "comment": "非常适合入门了，没有上来就搭环境，而是深入浅出的结合小demo，把Vue的基础知识结构快速搭建起来，让入学者没有负担，还能有所收获。",
+          "like": 22
+        },
+        {
+          "name": "凌晨晚餐",
+          "avatar": "https://img.mukewang.com/5a3f4e1c0001b4bf02500250-40-40.jpg",
+          "score": 10,
+          "time": "2019-08-01",
+          "comment": "之前只用过react，看这个课程，对vue有了初步的了解，挺好的",
+          "like": 33
+        },
+        {
+          "name": "慕丝3222080",
+          "avatar": "https://img1.mukewang.com/5458655200013d9802200220-40-40.jpg",
+          "score": 8,
+          "time": "2019-08-01",
+          "comment": "感谢老师，入门很有帮助！",
+          "like": 44
+        },
+        {
+          "name": "熬夜会牙痛_代码打多会掉头发",
+          "avatar": "https://img2.mukewang.com/545862fe00017c2602200220-40-40.jpg",
+          "score": 6,
+          "time": "2019-08-01",
+          "comment": "老师讲的很细，思路清晰，视频时长也不算长，学起来很轻松",
+          "like": 55
+        }
+      ]
+    },
+    "recommend": {
+      "title": "推荐课程",
+      "data": [
+        {
+          "url": "https://img2.mukewang.com/szimg/5becd5ad0001b89306000338-360-202.jpg",
+          "title": "Vue.js2.5+cube-ui重构饿了么App（经典再升级）",
+          "price": "198.00",
+          "type": "实战",
+          "rank": "中级",
+          "number": "8463"
+        },
+        {
+          "url": "https://img2.mukewang.com/szimg/5c0493ce000126b106000338-360-202.jpg",
+          "title": "微信小程序入门与实战 常用组件API开发技巧项目实战",
+          "price": "149.00",
+          "type": "实战",
+          "rank": "初级",
+          "number": "18300"
+        },
+        {
+          "url": "https://img4.mukewang.com/szimg/58f57d200001461105400300-360-202.jpg",
+          "title": "从0开始 独立完成企业级Java电商网站服务端开发(长期维护)",
+          "price": "348.00",
+          "type": "实战",
+          "rank": "中级",
+          "number": "7697"
+        },
+        {
+          "url": "https://img4.mukewang.com/szimg/5c60ed0008c8ddcc06000338-360-202.jpg",
+          "title": "2019版 微服务时代Spring Boot企业微信点餐系统",
+          "price": "348.00",
+          "type": "实战",
+          "rank": "中级",
+          "number": "4495"
+        },
+        {
+          "url": "https://img3.mukewang.com/szimg/5ac2dfe100014a9005400300-360-202.jpg",
+          "title": "Vue2.5开发去哪儿网App 从零基础入门到实战项目",
+          "price": "266.00",
+          "type": "实战",
+          "rank": "中级",
+          "number": "6308"
+        }
+      ]
+    },
+    "related": {
+      "title": "相关课程",
+      "data": [
+        {
+          "url": "https://img4.mukewang.com/5b7bfaa20001ec6006000338-240-135.jpg",
+          "title": "快速入门Web阅读器开发",
+          "rank": "中级",
+          "number": "8463"
+        },
+        {
+          "url": "https://img3.mukewang.com/5d3fe66408c059fd06000338-240-135.jpg",
+          "title": "vuex基础入门",
+          "rank": "初级",
+          "number": "18300"
+        },
+        {
+          "url": "https://img3.mukewang.com/szimg/58f57d200001461105400300-360-202.jpg",
+          "title": "从0开始 独立完成企业级Java电商网站服务端开发(长期维护)",
+          "rank": "中级",
+          "number": "7697"
+        },
+        {
+          "url": "https://www.imooc.com/courseimg/s/cover015_s.jpg",
+          "title": "【告白神器】N种语言实现4版本抖音告白程序",
+          "rank": "中级",
+          "number": "4495"
+        },
+        {
+          "url": "https://img2.mukewang.com/5c21e60d0822d58e06000338-240-135.jpg",
+          "title": "3小时速成 Vue2.x 核心技术",
+          "rank": "中级",
+          "number": "6308"
+        }
+      ]
+    },
+    "tags": ["职场必杀技清单", "Vue.js项目实例", "React Native开发跨平台", "最实用的前端开发框架教程", "React.js高级实战"]
+  }
+}
