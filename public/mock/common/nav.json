@@ -26,6 +26,11 @@
       "title": "手记",
       "path": "/article",
       "icon": ""
+    },
+    {
+      "title":"内容学习",
+      "path":"/phstudylist",
+      "icon":""
     }
   ]
 }

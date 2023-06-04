@@ -21,6 +21,8 @@ const CartIndex = () => import('pages/cart/cart.vue') // 购物车路由
 const CartConfirm = () => import('pages/cart/confirm.vue') // 购物车确认路由
 const CartPay = () => import('pages/cart/pay.vue') // 购物车支付路由
 const IntegralIndex = () => import('pages/integral/index.vue') // 积分商场路由
+const PhStudyList = () => import('pages/content-study/PhStudyList.vue') //内容学习浏览界面
+const PhStudyDetail = () => import('pages/content-study/PhStudyDetail.vue') //内容学习详情
 
 const routes = [
   {
@@ -31,12 +33,12 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component:Home 
+    component: Home
   },
   {
     path: '/user',
     name: 'UserCenter',
-    component:UserCenter,
+    component: UserCenter,
     meta: {
       requireAuth: true
     }
@@ -52,7 +54,7 @@ const routes = [
   {
     path: '/order',
     name: 'OrderIndex',
-    component:OrderIndex,
+    component: OrderIndex,
     meta: {
       requireAuth: true
     }
@@ -70,7 +72,7 @@ const routes = [
   {
     path: '/lesson',
     name: 'LessonIndex',
-    component:LessonIndex
+    component: LessonIndex
   },
   {
     path: '/lesson/:id',
@@ -80,7 +82,7 @@ const routes = [
   {
     path: '/notice',
     name: 'NoticeIndex',
-    component:NoticeIndex,
+    component: NoticeIndex,
     meta: {
       requireAuth: true
     }
@@ -88,7 +90,7 @@ const routes = [
   {
     path: '/cart',
     name: 'CartIndex',
-    component:CartIndex,
+    component: CartIndex,
     meta: {
       requireAuth: true
     }
@@ -96,7 +98,7 @@ const routes = [
   {
     path: '/cart/confirm',
     name: 'CartConfirm',
-    component:CartConfirm,
+    component: CartConfirm,
     meta: {
       requireAuth: true
     }
@@ -104,7 +106,7 @@ const routes = [
   {
     path: '/cart/pay/:code',
     name: 'CartPay',
-    component:CartPay,
+    component: CartPay,
     meta: {
       requireAuth: true
     }
@@ -112,32 +114,42 @@ const routes = [
   {
     path: '/read',
     name: 'ReadIndex',
-    component:ReadIndex,
+    component: ReadIndex,
   },
   {
     path: '/read/:id',
     name: 'ReadDetaiil',
-    component:ReadDetaiil,
+    component: ReadDetaiil,
   },
   {
     path: '/question',
     name: 'QuestionIndex',
-    component:QuestionIndex
+    component: QuestionIndex
   },
   {
     path: '/article',
     name: 'ArticleIndex',
-    component:ArticleIndex
+    component: ArticleIndex
   },
   {
     path: '/integral',
     name: 'IntegralIndex',
     component: IntegralIndex
-  }
+  },
+  {
+    path: '/phstudylist',
+    name: 'PhStudyList',
+    component: PhStudyList
+  },
+  {
+    path: '/study/:ph_study_id',
+    name: 'PhStudyDetail',
+    component: PhStudyDetail
+  },
 ]
 const router = new Router({
   routes: routes,
-  scrollBehavior () {
+  scrollBehavior() {
     return {
       x: 0,
       y: 0
@@ -151,7 +163,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
     if (userinfo.id) {
       next()
-    } else{
+    } else {
       store.commit('login/SET_LOGIN_ACTION', 'login')
       store.commit('login/SET_SHOW_LOGIN', true)
       next('/home')
