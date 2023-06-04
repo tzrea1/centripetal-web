@@ -4043,10 +4043,10 @@ electron-to-chromium@^1.3.164, electron-to-chromium@^1.3.47:
   resolved "https://registry.npm.taobao.org/electron-to-chromium/download/electron-to-chromium-1.3.185.tgz"
   integrity sha1-NjaFFOtxljKpFDXzyfV8mLR9gd4=
 
-element-ui@^2.10.1:
-  version "2.11.1"
-  resolved "https://registry.npmjs.org/element-ui/-/element-ui-2.11.1.tgz"
-  integrity sha512-PACNMHPWqm+/Wc2f/q93pLNzbNyVbpMCXCrYe81czengSWj7IBku7F3zccybkxtWn5qdCmMDBCpG5BzGJL4rKA==
+element-ui@^2.15.13:
+  version "2.15.13"
+  resolved "https://registry.npmjs.org/element-ui/-/element-ui-2.15.13.tgz"
+  integrity sha512-LJoatEYX6WV74FqXBss8Xfho9fh9rjDSzrDrTyREdGb1h1R3uRvmLh5jqp2JU137aj4/BgqA3K06RQpQBX33Bg==
   dependencies:
     async-validator "~1.8.1"
     babel-helper-vue-jsx-merge-props "^2.0.0"
