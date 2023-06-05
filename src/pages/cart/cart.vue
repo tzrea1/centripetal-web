@@ -74,8 +74,8 @@
 <script>
 import CartHeader from './cart-header.vue'
 import Empty from 'components/empty/empty.vue'
-import { getCartList, deleteCart } from 'api/cart.js'
-import { ERR_OK } from 'api/config.js'
+import { getCartList, deleteCart } from 'api/mock/cart.js'
+import { ERR_OK } from 'api/mock/config.js'
 import { setCheckLessons } from 'utils/cache.js'
 export default {
   data () {

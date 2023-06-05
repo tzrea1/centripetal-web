@@ -51,8 +51,8 @@
   </div>
 </template>
 <script>
-import { getLessonComment } from 'api/lesson.js'
-import { ERR_OK } from 'api/config.js'
+import { getLessonComment } from 'api/mock/lesson.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {
@@ -96,7 +96,7 @@ export default {
       cacheScore[comment['_id']] = score
       return Number(((content_score + easy_score + logic_score) / 3).toFixed(2))
     }
-  }, 
+  },
   computed: {
     totalScore () {
       if (this.commentList.length === 0) {

@@ -1,26 +1,26 @@
 <template>
   <ul class="login-area">
-    <li class="item invite">
-      <router-link to="/">
-        <img src="https://www.imooc.com/static/img/index/redPacket.png" width="14" height="16" alt="">
-        <span class="login-text">邀请有奖</span>
-      </router-link>
-    </li>
-    <li class="item download">
-      <a href="javascript:;">
-        <span class="login-text">下载APP</span>
-      </a>
-    </li>
-    <li class="item cart" @mouseenter="showMiniCart = true" @mouseleave="handleCarItemtMouseLeave">
-      <a href="javascript:;">
-        <i class="iconfont">&#xe63b;</i>
-        <span class="login-text">购物车</span>
-        <div class="mini-chart-container" @mouseenter="handleCartMouseEnter" @mouseleave="showMiniCart = false">
-          <mini-cart v-if="showMiniCart" :list="cartList" @close="showMiniCart=false" />
-        </div>
-      </a>
-    </li>
-    <template v-if="userInfo && userInfo.id">
+<!--    <li class="item invite">-->
+<!--      <router-link to="/">-->
+<!--        <img src="https://www.imooc.com/static/img/index/redPacket.png" width="14" height="16" alt="">-->
+<!--        <span class="login-text">邀请有奖</span>-->
+<!--      </router-link>-->
+<!--    </li>-->
+<!--    <li class="item download">-->
+<!--      <a href="javascript:;">-->
+<!--        <span class="login-text">下载APP</span>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--    <li class="item cart" @mouseenter="showMiniCart = true" @mouseleave="handleCarItemtMouseLeave">-->
+<!--      <a href="javascript:;">-->
+<!--        <i class="iconfont">&#xe63b;</i>-->
+<!--        <span class="login-text">购物车</span>-->
+<!--        <div class="mini-chart-container" @mouseenter="handleCartMouseEnter" @mouseleave="showMiniCart = false">-->
+<!--          <mini-cart v-if="showMiniCart" :list="cartList" @close="showMiniCart=false" />-->
+<!--        </div>-->
+<!--      </a>-->
+<!--    </li>-->
+    <template v-if="userInfo && userInfo.userId">
       <li class="item bell">
         <router-link to="/notice">
           <mooc-badge :max="99" :is-dot="isDot">
@@ -90,8 +90,8 @@
   </ul>
 </template>
 <script>
-import { getNotReadNotice } from 'api/notice.js'
-import { ERR_OK } from 'api/config.js'
+import { getNotReadNotice } from 'api/mock/notice.js'
+import { ERR_OK } from 'api/mock/config.js'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 export default {
   data () {
@@ -103,7 +103,7 @@ export default {
     }
   },
   mounted () {
-    if (this.userInfo.id) {
+    if (this.userInfo.userId) {
       this.getNotReadNoticeData()
     }
   },
@@ -171,7 +171,7 @@ export default {
     ...mapGetters(['userInfo'])
   },
   components: {
-    MiniCart: () => import('components/cart/cart.vue')
+    // MiniCart: () => import('components/cart/cart.vue')
   },
   beforeDestroy () {
     clearTimeout(this.timer)

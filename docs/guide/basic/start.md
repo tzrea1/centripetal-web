@@ -330,12 +330,13 @@ module.exports = {
 * `publicPath`：`publicPath`的默认值是`/`，配置为`./`是为了方便我们部署到`gh-pages`上。实际上它取决于你想要部署在哪个目录，假如你要部署在`https://www.baidu.com/vue-mooc/`，那么你应该配置成`publicPath：'/vue-mooc/'`
 * `outputDir`：默认值就是`dist`，你也可以配置成你想要的名字，例如`vue-mooc`。
 * `alias`：配置了一些别名，这么做是为了方便我们引入模块，当你的项目目录特别深、特别长的时候，这会很有用。例如我们配置了`api`的别名，那么我们可以在项目中直接像下面这样使用:
+
 ```js
 // 使用别名
-import { getHot } from 'api/common.js'
+import {getHot} from 'api/common.js'
 
 // 不使用别名
-import { getHot } from 'src/api/common.js'
+import {getHot} from 'src/api/mock/common.js'
 ```
 * `port`: 默认值为`8080`，为了不与其他项目的端口重复，我们可以指定一个喜欢的端口。配置后，我们就可以通过`http://localhost:xxx`的形式进行访问。
 * `proxy`：请求代理，其中`target`为要代理到的地址；`/mock`是我们的代理规则。

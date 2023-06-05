@@ -47,8 +47,8 @@
 <script>
 import Pagination from 'components/pagination/pagination.vue'
 import Empty from 'components/empty/empty.vue'
-import { getUserCourse } from 'api/user.js'
-import { ERR_OK } from 'api/config.js'
+import { getUserCourse } from 'api/mock/user.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

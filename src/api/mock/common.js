@@ -1,6 +1,6 @@
 import axios from 'utils/axios.js'
 import Axios from 'axios'
-import { ERR_OK } from 'api/config.js'
+import { ERR_OK } from 'api/mock/config.js'
 
 // 获取用户搜索历史
 export function getSearchHistory () {

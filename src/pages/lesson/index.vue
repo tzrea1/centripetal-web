@@ -18,9 +18,9 @@ import LessonSearch from './search.vue'
 import LessonNav from './nav.vue'
 import LessonList from './list.vue'
 import Pagination from 'components/pagination/pagination.vue'
-import { getHot } from 'api/common.js'
-import { getLessonNav, getLessonList } from 'api/lesson.js'
-import { ERR_OK } from 'api/config.js'
+import { getHot } from 'api/mock/common.js'
+import { getLessonNav, getLessonList } from 'api/mock/lesson.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

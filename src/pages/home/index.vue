@@ -11,24 +11,9 @@
           <img :src="item.img" class="swiper-img">
         </mooc-carousel-item>
       </mooc-carousel>
-      
+
       <Banner />
     </div>
-
-    <!--  实战导航 -->
-    <course-list :list="lessonData.recommend" title="实／战／推／荐" type="recommend" :position="0" />
-
-    <!-- 新上好课 -->
-    <course-list :list="lessonData.new" title="新／上／好／课" type="new" :position="1" />
-
-    <!-- 新手入门 -->
-    <course-list :list="lessonData.easy" title="新／手／入／门" type="easy" :position="2" />
-
-    <!-- 技能提升 -->
-    <course-list :list="lessonData.improve" title="技／能／提／升" type="improve" :position="3" />
-
-    <!-- 前言技术 -->
-    <course-list :list="lessonData.advanced" title="前／沿／技／术" type="advanced" :position="4" />
 
     <!-- 猿问和手记 -->
     <Article :article="articleList" />
@@ -43,12 +28,11 @@
 <script>
 import Nav from './nav.vue'
 import Banner from './banner.vue'
-import CourseList from './course-list.vue'
 import Article from './article.vue'
 import Teacher from './teacher.vue'
 import Student from './student.vue'
-import { getSliderList, getHomeCourse, getArticle, getTeacher, getAllStar } from 'api/home.js'
-import { ERR_OK } from 'api/config.js'
+import { getSliderList, getArticle, getTeacher, getAllStar } from 'api/mock/home.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   name: 'Home',
   data () {
@@ -69,7 +53,6 @@ export default {
   },
   created () {
     this.getBanner()
-    this.getCourseList()
     this.getArticleList()
     this.getTeacherList()
     this.getAllStarList()
@@ -99,20 +82,6 @@ export default {
       })
     },
     // 获取课程信息
-    getCourseList () {
-      getHomeCourse().then(res => {
-        let { code, data, msg } = res
-        if (code === ERR_OK) {
-          this.lessonData = data
-        } else {
-          this.lessonData = {}
-          this.$message.error(msg)
-        }
-      }).catch(() => {
-        this.lessonData = {}
-        this.$message.error('接口异常')
-      })
-    },
     // 获取猿问和手记
     getArticleList () {
       getArticle().then((res) => {
@@ -163,7 +132,6 @@ export default {
   components: {
     Nav,
     Banner,
-    CourseList,
     Article,
     Teacher,
     Student

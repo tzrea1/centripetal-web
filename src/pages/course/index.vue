@@ -11,7 +11,7 @@
 
     <!-- 导航模块 -->
     <course-nav v-if="navList.length" :list="navList" :params.sync="params" />
-    
+
     <!-- 课程列表 -->
     <course-list :list="courseList" :sort.sync="sort" />
 
@@ -24,8 +24,8 @@ import CourseSearch from './search.vue'
 import CourseNav from './nav.vue'
 import CourseList from './list.vue'
 import Pagination from 'components/pagination/pagination.vue'
-import { getLessonNav, getLessonList } from 'api/lesson.js'
-import { ERR_OK } from 'api/config.js'
+import { getLessonNav, getLessonList } from 'api/mock/lesson.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

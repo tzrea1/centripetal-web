@@ -49,8 +49,8 @@
 <script>
 import CartHeader from './cart-header.vue'
 import { getCheckLessons, removeCheckLessons } from 'utils/cache.js'
-import { createOrder } from 'api/order.js'
-import { ERR_OK } from 'api/config.js'
+import { createOrder } from 'api/mock/order.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

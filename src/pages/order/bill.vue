@@ -28,8 +28,8 @@
 </template>
 <script>
 import Pagination from 'components/pagination/pagination.vue'
-import { getUserBillList } from 'api/order.js'
-import { ERR_OK } from 'api/config.js'
+import { getUserBillList } from 'api/mock/order.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

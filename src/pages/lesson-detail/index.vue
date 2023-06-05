@@ -10,8 +10,8 @@
 <script>
 import LessonHeader from './header.vue'
 import LessonContent from './content.vue'
-import { getLessonDetail } from 'api/lesson.js'
-import { ERR_OK } from 'api/config.js'
+import { getLessonDetail } from 'api/mock/lesson.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

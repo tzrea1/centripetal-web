@@ -57,8 +57,8 @@
 <script>
 import Pagination from 'components/pagination/pagination.vue'
 import Empty from 'components/empty/empty.vue'
-import { ERR_OK } from 'api/config.js'
-import { getNoticeList, getNoticeSetting, noticeReadOne, noticeReadAll, noticeNoticeDelete } from 'api/notice.js'
+import { ERR_OK } from 'api/mock/config.js'
+import { getNoticeList, getNoticeSetting, noticeReadOne, noticeReadAll, noticeNoticeDelete } from 'api/mock/notice.js'
 export default {
   data () {
     return {
@@ -66,7 +66,7 @@ export default {
       page: 1,              // 当前页
       dialogVisible: false, // 是否显示消息中心弹窗
       settingList: [],      // 设置数据
-      noticeList: [],       // 消息中心列表 
+      noticeList: [],       // 消息中心列表
       currentNavIndex: 0,   // 当前导航的索引
       navList: []           // 导航数据
     }

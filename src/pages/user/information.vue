@@ -53,8 +53,8 @@
   </div>
 </template>
 <script>
-import { updateUserInfo } from 'api/user.js'
-import { ERR_OK } from 'api/config.js'
+import { updateUserInfo } from 'api/mock/user.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   props: {
     userinfo: {

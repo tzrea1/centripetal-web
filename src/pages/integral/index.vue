@@ -57,8 +57,8 @@
 <script>
 import Pagination from 'components/pagination/pagination.vue'
 import Empty from 'components/empty/empty.vue'
-import { getIntegralTypes, getIntegralList } from 'api/integral.js'
-import { ERR_OK } from 'api/config.js'
+import { getIntegralTypes, getIntegralList } from 'api/mock/integral.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

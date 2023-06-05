@@ -21,8 +21,8 @@
 </template>
 <script>
 import NavContent from './nav-content.vue'
-import { ERR_OK } from 'api/config.js'
-import { getHomeNav } from 'api/home.js'
+import { ERR_OK } from 'api/mock/config.js'
+import { getHomeNav } from 'api/mock/home.js'
 export default {
   data () {
     return {

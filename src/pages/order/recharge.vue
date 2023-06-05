@@ -29,7 +29,7 @@
             </template>
           </el-table-column>
           <el-table-column label="操作" prop="action.text" width="100" />
-          <el-table-column label="备注" prop="remark" />        
+          <el-table-column label="备注" prop="remark" />
         </el-table>
       </div>
     </div>
@@ -93,8 +93,8 @@
 
 <script>
 import Pagination from 'components/pagination/pagination.vue'
-import { getUserRecharges, createUserRecharges } from 'api/order.js'
-import { ERR_OK } from 'api/config.js'
+import { getUserRecharges, createUserRecharges } from 'api/mock/order.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

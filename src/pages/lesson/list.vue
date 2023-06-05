@@ -58,8 +58,8 @@
 </template>
 <script>
 import Empty from 'components/empty/empty.vue'
-import { addCart } from 'api/cart.js'
-import { ERR_OK } from 'api/config.js'
+import { addCart } from 'api/mock/cart.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   props: {
     list: {

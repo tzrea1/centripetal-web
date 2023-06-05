@@ -61,8 +61,8 @@
   </div>
 </template>
 <script>
-import { getLessonQa } from 'api/lesson.js'
-import { ERR_OK } from 'api/config.js'
+import { getLessonQa } from 'api/mock/lesson.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

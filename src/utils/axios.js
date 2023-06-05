@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-import { ERR_OK } from 'api/config.js'
+import { ERR_OK } from 'api/mock/config.js'
 
 const service = axios.create({
     timeout: 10000

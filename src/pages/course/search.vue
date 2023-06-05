@@ -10,8 +10,8 @@
   </div>
 </template>
 <script>
-import { getSearchHistory } from 'api/common.js'
-import { ERR_OK } from 'api/config.js'
+import { getSearchHistory } from 'api/mock/common.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

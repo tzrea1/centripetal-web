@@ -25,8 +25,8 @@
 </template>
 <script>
 import Pagination from 'components/pagination/pagination.vue'
-import { ERR_OK } from 'api/config.js'
-import { getUserLogs } from 'api/user.js'
+import { ERR_OK } from 'api/mock/config.js'
+import { getUserLogs } from 'api/mock/user.js'
 export default {
   props: {
     userinfo: {

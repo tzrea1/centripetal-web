@@ -13,15 +13,15 @@
         <span class="login-close iconfont" @click="setShowLogin(false)">&#xe619;</span>
       </div>
       <component :is="componentName" :index="currentTabIndex" />
-      <div v-show="componentName!='qrcode-way'" class="three-login-way">
-        <span class="phone-login">{{ threeTitle }}</span>
-        <span class="three-way-item">
-          <i class="iconfont weibo">&#xe653;</i>
-          <i class="iconfont wechart">&#xe646;</i>
-          <i class="iconfont qq">&#xe6a0;</i>
-        </span>
-      </div>
-      <div v-if="currentTabIndex == 0" class="qrcode-way" :style="getQrcodeBackground" @click="handleQrcodeClick" />
+<!--      <div v-show="componentName!='qrcode-way'" class="three-login-way">-->
+<!--        <span class="phone-login">{{ threeTitle }}</span>-->
+<!--        <span class="three-way-item">-->
+<!--          <i class="iconfont weibo">&#xe653;</i>-->
+<!--          <i class="iconfont wechart">&#xe646;</i>-->
+<!--          <i class="iconfont qq">&#xe6a0;</i>-->
+<!--        </span>-->
+<!--      </div>-->
+<!--      <div v-if="currentTabIndex == 0" class="qrcode-way" :style="getQrcodeBackground" @click="handleQrcodeClick" />-->
     </div>
   </div>
 </template>
@@ -32,7 +32,8 @@ import { mapMutations, mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      loginTabs: ['登录', '注册'],
+      // loginTabs: ['登录', '注册'],
+      loginTabs: ['登录'],
       currentTabIndex: 0,
       componentName: 'login-way'
     }
@@ -129,7 +130,7 @@ export default {
               width: 16px;
               height: 4px;
               border-radius: 4px;
-              background-color: $red; 
+              background-color: $red;
       .three-login-way
         margin-top: 22px;
         padding: 0 32px;
@@ -168,5 +169,5 @@ export default {
         height: 60px;
         background:url('https://www.imooc.com/static/img/erweima.png') no-repeat 0 0;
         border-bottom-right-radius: 12px;
-        cursor: pointer; 
+        cursor: pointer;
 </style>

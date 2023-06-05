@@ -28,8 +28,8 @@
   </div>
 </template>
 <script>
-import { consultList } from 'api/order.js'
-import { ERR_OK } from 'api/config.js'
+import { consultList } from 'api/mock/order.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

@@ -63,8 +63,8 @@
 </template>
 <script>
 import RecommendRead from 'components/recommend/recommend-read.vue'
-import { getReadDetail, getRecommendRead } from 'api/read.js'
-import { ERR_OK } from 'api/config.js'
+import { getReadDetail, getRecommendRead } from 'api/mock/read.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

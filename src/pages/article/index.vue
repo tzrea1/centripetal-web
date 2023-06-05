@@ -27,7 +27,7 @@
           </li>
         </ul>
       </div>
-      
+
       <div class="list">
         <template v-if="articleList && articleList.length">
           <article-list :list="articleList" />
@@ -42,8 +42,8 @@
 import Pagination from 'components/pagination/pagination.vue'
 import ArticleList from './list.vue'
 import Empty from 'components/empty/empty.vue'
-import { getArticleNavList, getArticleList } from 'api/article.js'
-import { ERR_OK } from 'api/config.js'
+import { getArticleNavList, getArticleList } from 'api/mock/article.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

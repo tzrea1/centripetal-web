@@ -43,8 +43,8 @@ import Information from "./information.vue"
 import Log from "./log.vue"
 import Authenticate from "./authenticate.vue"
 import MAddress from "./address.vue"
-import { getUserInfo } from 'api/user.js'
-import { ERR_OK } from 'api/config.js'
+import { getUserInfo } from 'api/mock/user.js'
+import { ERR_OK } from 'api/mock/config.js'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {

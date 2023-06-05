@@ -10,8 +10,8 @@
     <!-- 导航栏模块 -->
     <m-nav v-if="navList.length" :list="navList" />
 
-    <!-- 搜索框模块 -->
-    <search />
+<!--    &lt;!&ndash; 搜索框模块 &ndash;&gt;-->
+<!--    <search />-->
 
     <!-- 登录模块 -->
     <login-area />
@@ -21,8 +21,8 @@
 import Search from 'components/search/search.vue'
 import MNav from './nav.vue'
 import LoginArea from './login.vue'
-import { getHeader } from 'api/common.js'
-import { ERR_OK } from 'api/config.js'
+import { getHeader } from 'api/mock/common.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

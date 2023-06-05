@@ -53,7 +53,7 @@
               <p class="price-item real">
                 <span>¥ {{ getTotal(item.list) }}</span>
               </p>
-            </template>         
+            </template>
           </div>
           <div class="order-status-box">
             <template v-if="item.status.code==0">
@@ -89,8 +89,8 @@
 <script>
 import Pagination from 'components/pagination/pagination.vue'
 import Empty from 'components/empty/empty.vue'
-import { getOrderList, cancelOrder, deleteOrder } from 'api/order.js'
-import { ERR_OK } from 'api/config.js'
+import { getOrderList, cancelOrder, deleteOrder } from 'api/mock/order.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {

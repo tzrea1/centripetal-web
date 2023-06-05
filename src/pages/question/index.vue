@@ -98,8 +98,8 @@
 <script>
 import Pagination from 'components/pagination/pagination.vue'
 import Empty from 'components/empty/empty.vue'
-import { getFollowList, getQuestionList, getLabelList, followLabels } from 'api/question.js'
-import { ERR_OK } from 'api/config.js'
+import { getFollowList, getQuestionList, getLabelList, followLabels } from 'api/mock/question.js'
+import { ERR_OK } from 'api/mock/config.js'
 import { mapGetters } from 'vuex'
 export default {
   data () {

@@ -95,8 +95,8 @@
   </div>
 </template>
 <script>
-import { updateUserBinds } from 'api/user.js'
-import { ERR_OK } from 'api/config.js'
+import { updateUserBinds } from 'api/mock/user.js'
+import { ERR_OK } from 'api/mock/config.js'
 import { mapActions, mapMutations, mapGetters } from 'vuex'
 import crypto from 'crypto-js'
 export default {
@@ -215,7 +215,7 @@ export default {
       'logout': 'login/logout'
     }),
     ...mapMutations({
-      'showLogin': 'login/SET_SHOW_LOGIN' 
+      'showLogin': 'login/SET_SHOW_LOGIN'
     })
   },
   computed: {

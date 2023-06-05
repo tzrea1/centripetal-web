@@ -42,9 +42,9 @@
   </div>
 </template>
 <script>
-import { getHot, getSearchHistory, getSearch } from 'api/common.js'
+import { getHot, getSearchHistory, getSearch } from 'api/mock/common.js'
 import { debounce } from 'utils/utils.js'
-import { ERR_OK } from 'api/config.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {
@@ -57,7 +57,8 @@ export default {
     }
   },
   mounted () {
-    this.tags = ['Java入门', '前端入门']
+    // this.tags = ['Java入门', '前端入门']
+    this.tags = ['在本网站搜索']
     this.getHotData()
   },
   methods: {
@@ -137,7 +138,7 @@ export default {
   .header-search
     float: left;
     position: relative;
-    margin-left: 25px;
+    margin-left: 40%;
     height: 100%;
     &.focus
       .search-tags
@@ -235,4 +236,3 @@ export default {
             &:hover
               background-color: #edf0f2;
 </style>
- 

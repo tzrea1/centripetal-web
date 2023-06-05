@@ -28,7 +28,7 @@
           </dd>
         </template>
       </dl>
-      
+
       <div class="pay-way-container">
         <!-- 支付方式 -->
         <div class="way-list">
@@ -82,8 +82,8 @@
 </template>
 <script>
 import CartHeader from './cart-header.vue'
-import { getOrderInfo, orderPay, getUserCharge } from 'api/order.js'
-import { ERR_OK } from 'api/config.js'
+import { getOrderInfo, orderPay, getUserCharge } from 'api/mock/order.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {
@@ -108,7 +108,7 @@ export default {
         "img": "https://order.imooc.com/static/module/pay/center/img/pay_s.png"
       },
       {
-        
+
         "type": 2,
         "name": "我的余额",
         "img": "https://order.imooc.com/static/module/pay/center/img/yue.png"

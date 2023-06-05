@@ -74,8 +74,8 @@
 <script>
 import Pagination from 'components/pagination/pagination.vue'
 import Empty from 'components/empty/empty.vue'
-import { getReadTypes, getReadList } from 'api/read.js'
-import { ERR_OK } from 'api/config.js'
+import { getReadTypes, getReadList } from 'api/mock/read.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     return {
@@ -260,7 +260,7 @@ export default {
               line-height: 24px;
               cursor: pointer;
               &:hover
-                color: $theme-blue-color; 
+                color: $theme-blue-color;
               .icon
                 margin-right: 10px;
                 padding: 4px;

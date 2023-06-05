@@ -62,8 +62,8 @@
   </div>
 </template>
 <script>
-import { getUserAddresss, createUserAddress, updateUserAddress, deleteUserAddress, defaultUserAddress } from 'api/address.js'
-import { ERR_OK } from 'api/config.js'
+import { getUserAddresss, createUserAddress, updateUserAddress, deleteUserAddress, defaultUserAddress } from 'api/mock/address.js'
+import { ERR_OK } from 'api/mock/config.js'
 export default {
   data () {
     const rules = {
