@@ -30,53 +30,53 @@
       </li>
       <li class="item userinfo" @mouseenter="showUserInfo = true" @mouseleave="showUserInfo = false">
         <div class="img-box">
-          <img :src="userInfo.avatar" alt="">
+          <img :src="avatarUrl" alt="">
         </div>
         <div v-show="showUserInfo" class="userinfo-wrapper">
           <div class="userinfo-message-wrapper">
-            <img :src="userInfo.avatar" alt="">
+            <img :src="avatarUrl" alt="">
             <div class="userinfo-message">
               <p class="name ellipsis">
                 {{ userInfo.nickname }}
               </p>
-              <p class="number">
-                <span class="number-item">经验 <b>{{ userInfo.exp }}</b></span>
-                <span class="number-item">积分 <b>{{ userInfo.integral }}</b></span>
-              </p>
+<!--              <p class="number">-->
+<!--                <span class="number-item">经验 <b>{{ userInfo.exp }}</b></span>-->
+<!--                <span class="number-item">积分 <b>{{ userInfo.integral }}</b></span>-->
+<!--              </p>-->
             </div>
           </div>
-          <div class="fast-nav" @click.stop="showUserInfo = false">
-            <router-link to="/user/course">
-              <div class="fast-nav-item">
-                <i class="iconfont">&#xe60e;</i>
-                我的课程
-              </div>
-            </router-link>
-            <router-link to="/order">
-              <div class="fast-nav-item">
-                <i class="iconfont">&#xe611;</i>
-                订单中心
-              </div>
-            </router-link>
-            <router-link to="/integral">
-              <div class="fast-nav-item">
-                <i class="iconfont">&#xe61b;</i>
-                积分商城
-              </div>
-            </router-link>
-            <router-link to="/user">
-              <div class="fast-nav-item">
-                <i class="iconfont">&#xe680;</i>
-                个人设置
-              </div>
-            </router-link>
-          </div>
-          <div v-if="userInfo.lastCourse" class="course-history">
-            <i class="iconfont">&#xe62f;</i>
-            <span class="course-name ellipsis">{{ userInfo.lastCourse && userInfo.lastCourse.name }}</span>
-            <span class="course-chapter ellipsis">{{ userInfo.lastCourse && userInfo.lastCourse.chapter }}</span>
-            <span class="course-btn" @click="handleHistoryClick">继续</span>
-          </div>
+<!--          <div class="fast-nav" @click.stop="showUserInfo = false">-->
+<!--            <router-link to="/user/course">-->
+<!--              <div class="fast-nav-item">-->
+<!--                <i class="iconfont">&#xe60e;</i>-->
+<!--                我的课程-->
+<!--              </div>-->
+<!--            </router-link>-->
+<!--            <router-link to="/order">-->
+<!--              <div class="fast-nav-item">-->
+<!--                <i class="iconfont">&#xe611;</i>-->
+<!--                订单中心-->
+<!--              </div>-->
+<!--            </router-link>-->
+<!--            <router-link to="/integral">-->
+<!--              <div class="fast-nav-item">-->
+<!--                <i class="iconfont">&#xe61b;</i>-->
+<!--                积分商城-->
+<!--              </div>-->
+<!--            </router-link>-->
+<!--            <router-link to="/user">-->
+<!--              <div class="fast-nav-item">-->
+<!--                <i class="iconfont">&#xe680;</i>-->
+<!--                个人设置-->
+<!--              </div>-->
+<!--            </router-link>-->
+<!--          </div>-->
+<!--          <div v-if="userInfo.lastCourse" class="course-history">-->
+<!--            <i class="iconfont">&#xe62f;</i>-->
+<!--            <span class="course-name ellipsis">{{ userInfo.lastCourse && userInfo.lastCourse.name }}</span>-->
+<!--            <span class="course-chapter ellipsis">{{ userInfo.lastCourse && userInfo.lastCourse.chapter }}</span>-->
+<!--            <span class="course-btn" @click="handleHistoryClick">继续</span>-->
+<!--          </div>-->
           <p class="exit-btn">
             <span @click="handleUserLogout">安全退出</span>
           </p>
@@ -99,7 +99,8 @@ export default {
       isDot: false,
       cartList: [],
       showMiniCart: false,
-      showUserInfo: false
+      showUserInfo: false,
+      avatarUrl: "https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/img/avatar/LOGO.png"
     }
   },
   mounted () {

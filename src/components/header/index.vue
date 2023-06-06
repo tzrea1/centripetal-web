@@ -50,7 +50,6 @@ export default {
   },
   components: {
     MNav,
-    Search,
     LoginArea
   }
 }
