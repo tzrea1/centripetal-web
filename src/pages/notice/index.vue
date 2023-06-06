@@ -47,6 +47,22 @@
       <empty v-else message="暂无相关消息数据"></empty>
     </div>
 
+    <!-- dialog -->
+    <el-dialog title="通知详情" :visible.sync="detailVisible">
+      <p>Content: {{ currentNotice.content }}</p>
+      <p>Notice ID: {{ currentNotice.noticeId }}</p>
+      <p>Publish Time: {{ currentNotice.publishTime }}</p>
+      <p>Title: {{ currentNotice.title }}</p>
+      <el-row>
+        <el-col :span="24">
+          <div class="notice-content" v-html="contentHtml" />
+        </el-col>
+      </el-row>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="detailVisible = false">关闭</el-button>
+      </span>
+    </el-dialog>
+
     <!-- pagination -->
     <pagination :total="total" :page.sync="queryParams.pageNum" :size="queryParams.pageSize" @change="getNoticeListData" />
 
@@ -60,6 +76,7 @@ import Empty from 'components/empty/empty.vue'
 import { ERR_OK } from 'api/mock/config.js'
 import { getNoticeList, getNoticeSetting, noticeReadOne, noticeReadAll, noticeNoticeDelete } from 'api/mock/notice.js'
 import { listNotice, getNotice, delNotice, addNotice, updateNotice } from 'api/system/notice.js'
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -77,6 +94,9 @@ export default {
         userId: null,
         publishTime: null
       },                    //通知列表查询参数
+      detailVisible: false,  // 详情弹窗是否可见
+      currentNotice: {},    // 当前的通知，用于在详情弹窗中显示
+      contentHtml: '',          // 窗口中显示的通知HTML内容
     }
   },
   created () {
@@ -115,19 +135,29 @@ export default {
     },
     // 单个通知已读
     handleNoticeClick (item) {
-      const data = {
-        id: item.id
-      }
-      noticeReadOne(data).then(res => {
-        const { code, msg } = res
-        if (code !== ERR_OK) {
-          this.$message.error(msg)
-          return false
-        }
-        this.$message.success('消息已读成功')
-        this.getNoticeListData()
-      }).catch(() => {
-        this.$message.error('消息已读失败')
+      // const data = {
+      //   id: item.id
+      // }
+      // noticeReadOne(data).then(res => {
+      //   const { code, msg } = res
+      //   if (code !== ERR_OK) {
+      //     this.$message.error(msg)
+      //     return false
+      //   }
+      //   this.$message.success('消息已读成功')
+      //   this.getNoticeListData()
+      // }).catch(() => {
+      //   this.$message.error('消息已读失败')
+      // })
+      getNotice(item.noticeId).then(res => {
+        // 保存当前通知的数据，以在详情弹窗中显示
+        this.currentNotice = res.data;
+        axios.get(this.currentNotice.content).then(response => {
+          this.contentHtml = response.data
+        })
+        // 打开详情弹窗
+        this.detailVisible = true;
+
       })
     },
     // 全部标记已读
