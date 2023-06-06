@@ -3,7 +3,7 @@
     <!-- logo -->
     <div class="logo-box">
       <router-link to="/">
-        <img src="https://www.imooc.com/static/img/index/logo.png" height="72" alt="Logo">
+        <img src="https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/img/avatar/LOGO.png" height="72" alt="Logo">
       </router-link>
     </div>
 

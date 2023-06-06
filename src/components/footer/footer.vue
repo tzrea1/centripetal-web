@@ -1,30 +1,30 @@
 <template>
   <div class="footer">
     <div class="footer-container m-center">
-      <div class="footer-links">
-        <ul>
-          <li
-            v-for="(item,index) in linkList"
-            :key="index"
-            class="link-item"
-          >
-            {{ item.title }}
-          </li>
-        </ul>
-      </div>
+<!--      <div class="footer-links">-->
+<!--        <ul>-->
+<!--          <li-->
+<!--            v-for="(item,index) in linkList"-->
+<!--            :key="index"-->
+<!--            class="link-item"-->
+<!--          >-->
+<!--            {{ item.title }}-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
       <div class="copyright">
-        <p>© {{ year }} imooc.com  京ICP备 12003892号-11  北京奥鹏文化传媒有限公司</p>
+        <p>© {{ year }} centripetal.com  Joyboys 版权所有</p>
       </div>
       <div class="share">
-        <div class="share-item wechart">
-          <span class="share-img" />
-          <p>官方微信</p>
-          <div class="wechart-code" />
-        </div>
-        <div class="share-item weibo">
-          <span class="share-img" />
-          <p>官方微博</p>
-        </div>
+<!--        <div class="share-item wechart">-->
+<!--          <span class="share-img" />-->
+<!--          <p>官方微信</p>-->
+<!--          <div class="wechart-code" />-->
+<!--        </div>-->
+<!--        <div class="share-item weibo">-->
+<!--          <span class="share-img" />-->
+<!--          <p>官方微博</p>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
@@ -42,23 +42,23 @@ export default {
     this.year = new Date().getFullYear()
   },
   mounted () {
-    this.getFooterData()
+    // this.getFooterData()
   },
   methods: {
     // 获取底部版权数据
-    getFooterData () {
-      getFooter().then(res => {
-        let { code, data, msg } = res
-        if (code === ERR_OK) {
-          this.linkList = data
-        } else {
-          this.$message.error(msg)
-          this.linkList = []
-        }
-      }).catch(() => {
-        this.linkList = []
-      })
-    }
+    // getFooterData () {
+    //   getFooter().then(res => {
+    //     let { code, data, msg } = res
+    //     if (code === ERR_OK) {
+    //       this.linkList = data
+    //     } else {
+    //       this.$message.error(msg)
+    //       this.linkList = []
+    //     }
+    //   }).catch(() => {
+    //     this.linkList = []
+    //   })
+    // }
   }
 }
 </script>
