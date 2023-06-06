@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import Search from 'components/search/search.vue'
+// import Search from 'components/search/search.vue'
 import MNav from './nav.vue'
 import LoginArea from './login.vue'
 import { getHeader } from 'api/mock/common.js'
