@@ -31,14 +31,14 @@
           :class="{ready: item.isRead}"
         >
           <div class="item-icon">
-            {{ item.code == 1 ? '实战' : '系统' }}
+            小组
           </div>
           <div class="item-content">
             <p class="title" @click="handleNoticeClick(item)">
               {{ item.title }}
             </p>
-            <p class="time">
-              {{ item.time }}
+            <p class="publishTime">
+              {{ item.publishTime }}
             </p>
             <span class="iconfont delete" @click.stop="handleDeleteClick(item)">&#xe622;</span>
           </div>
@@ -48,7 +48,7 @@
     </div>
 
     <!-- pagination -->
-    <pagination v-if="noticeList.length" :total="total" :page.sync="page" @change="handlePaginationChange" />
+    <pagination :total="total" :page.sync="queryParams.pageNum" :size="queryParams.pageSize" @change="getNoticeListData" />
 
     <!-- dialog -->
     <notice-setting :list="settingList" :visible.sync="dialogVisible"></notice-setting>
@@ -59,6 +59,7 @@ import Pagination from 'components/pagination/pagination.vue'
 import Empty from 'components/empty/empty.vue'
 import { ERR_OK } from 'api/mock/config.js'
 import { getNoticeList, getNoticeSetting, noticeReadOne, noticeReadAll, noticeNoticeDelete } from 'api/mock/notice.js'
+import { listNotice, getNotice, delNotice, addNotice, updateNotice } from 'api/system/notice.js'
 export default {
   data () {
     return {
@@ -68,13 +69,20 @@ export default {
       settingList: [],      // 设置数据
       noticeList: [],       // 消息中心列表
       currentNavIndex: 0,   // 当前导航的索引
-      navList: []           // 导航数据
+      navList: [],          // 导航数据
+      queryParams: {
+        pageNum: 1,
+        pageSize: 10,
+        noticeId: null,
+        userId: null,
+        publishTime: null
+      },                    //通知列表查询参数
     }
   },
   created () {
     this.navList = [
       { title: '全部', code: 0 },
-      { title: '实战', code: 1 },
+      { title: '小组', code: 1 },
       { title: '系统', code: 2 }
     ]
   },
@@ -152,25 +160,30 @@ export default {
     },
     // 获取通知列表数据
     getNoticeListData () {
-      const params = {
-        page: this.page,
-        code: this.currentCode
-      }
-      getNoticeList(params).then(res => {
-        this.noticeList = []
-        this.total = 0
-        let { code, data, msg } = res
-        if (code === ERR_OK) {
-          this.noticeList = data.list
-          this.total = data.total
-        } else {
-          this.$message.error(msg)
-          this.noticeList = []
-          this.total = 0
-        }
-      }).catch(() => {
-        this.noticeList = []
-        this.total = 0
+      // const params = {
+      //   page: this.page,
+      //   code: this.currentCode
+      // }
+      // getNoticeList(params).then(res => {
+      //   this.noticeList = []
+      //   this.total = 0
+      //   let { code, data, msg } = res
+      //   if (code === ERR_OK) {
+      //     this.noticeList = data.list
+      //     this.total = data.total
+      //   } else {
+      //     this.$message.error(msg)
+      //     this.noticeList = []
+      //     this.total = 0
+      //   }
+      // }).catch(() => {
+      //   this.noticeList = []
+      //   this.total = 0
+      // })
+      listNotice(this.queryParams).then(response => {
+        this.noticeList = response.rows
+        this.total = response.total
+        this.loading = false
       })
     },
     // 获取通知设置数据

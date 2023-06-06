@@ -33,6 +33,11 @@
       "icon":""
     },
     {
+      "title":"小组",
+      "path":"/group",
+      "icon":""
+    },
+    {
       "title":"答题竞赛",
       "path":"/contestlist",
       "icon":""
