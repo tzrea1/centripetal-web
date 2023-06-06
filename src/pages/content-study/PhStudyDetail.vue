@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -48,11 +50,16 @@ export default {
         title: "党史学习1",
         description: "这是第一个党史学习活动",
         state: "ongoing",
-        prepic_url: "https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/files/20230510/%E5%85%B1%E6%8C%AF%E7%BB%93%E6%9E%9Cno.1.jpg",
-        content_url: "https://example.com/content1.html",
+        prepic_url:
+          "https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/files/20230510/%E5%85%B1%E6%8C%AF%E7%BB%93%E6%9E%9Cno.1.jpg",
+        content_url:
+          "http://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/files/20230605/content_1685980377579_587.html",
       };
-
-      this.studyContent = "<p>这里是党史内容学习的具体内容...</p>";
+      // Fetch the content of the HTML file
+      axios.get(this.study.content_url).then(response => {
+        this.studyContent = response.data;
+      });
+      // this.studyContent = "<p>这里是党史内容学习的具体内容...</p>";
     }, 500);
   },
 };
