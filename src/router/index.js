@@ -23,6 +23,7 @@ const CartPay = () => import('pages/cart/pay.vue') // 购物车支付路由
 const IntegralIndex = () => import('pages/integral/index.vue') // 积分商场路由
 const PhStudyList = () => import('pages/content-study/PhStudyList.vue') //内容学习浏览界面
 const PhStudyDetail = () => import('pages/content-study/PhStudyDetail.vue') //内容学习详情
+const Group = () => import('pages/group/index.vue') //内容学习浏览界面
 
 const routes = [
   {
@@ -83,9 +84,6 @@ const routes = [
     path: '/notice',
     name: 'NoticeIndex',
     component: NoticeIndex,
-    meta: {
-      requireAuth: true
-    }
   },
   {
     path: '/cart',
@@ -145,6 +143,11 @@ const routes = [
     path: '/study/:ph_study_id',
     name: 'PhStudyDetail',
     component: PhStudyDetail
+  },
+  {
+    path: '/group',
+    name: 'Group',
+    component: Group
   },
 ]
 const router = new Router({

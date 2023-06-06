@@ -31,6 +31,11 @@
       "title":"内容学习",
       "path":"/phstudylist",
       "icon":""
+    },
+    {
+      "title":"小组",
+      "path":"/group",
+      "icon":""
     }
   ]
 }
