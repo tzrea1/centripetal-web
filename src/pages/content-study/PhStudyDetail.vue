@@ -73,10 +73,11 @@ export default {
       const ph_study_id = this.$route.params.ph_study_id; // 从路由参数中获取当前学习活动的id
       const studyDetail = await getContent(ph_study_id); // 调用API方法获取数据
       this.study = studyDetail.data;
-      console.log(this.study);
+      // console.log(this.study);
       // Fetch the content of the HTML file
       axios.get(this.study.contentUrl).then((response) => {
         this.studyContent = response.data;
+        // console.log(this.studyContent);
       });
     },
     downloadFile(file) {
@@ -136,6 +137,30 @@ export default {
   margin: 30px 0;
   border-top: 1px solid #e5e5e5;
   padding-top: 20px;
+}
+
+.study-content h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.study-content strong,
+.study-content b {
+  font-weight: bold;
+}
+
+.study-content em,
+.study-content i {
+  font-style: italic;
+}
+
+.study-content u {
+  text-decoration: underline;
+}
+
+.study-content p {
+  font-size: 1em;
+  line-height: 1.5;
 }
 
 .study-attachments-title {
