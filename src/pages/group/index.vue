@@ -16,7 +16,8 @@
             <el-row>
                 <div class="title-container">
                     <h3 class="notice-list-title">通知列表</h3>
-                    <button class="more-button" @click="goToNoticePage">查看更多</button>
+                    <!-- <button class="more-button" @click="goToNoticePage">查看更多</button> -->
+                    <button class="more-button" @click="handleAdd">新增</button>
                 </div>
                 <ul v-if="noticeList.length">
                     <li v-for="(item, index) in noticeList.slice(0, 5)" :key="index" ref="NoticeList" class="list-item"
@@ -48,6 +49,30 @@
                     <el-button @click="detailVisible = false">关闭</el-button>
                 </span>
             </el-dialog>
+
+            <!-- 添加或修改组内通知对话框 -->
+            <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+                <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+                    <el-form-item label="组长id" prop="userId">
+                        <el-input v-model="form.userId" placeholder="请输入组长Id" disabled/>
+                    </el-form-item>
+                    <el-form-item label="通知标题">
+                        <el-input v-model="form.title" placeholder="请输入标题" />
+                    </el-form-item>
+                    <el-form-item label="通知内容">
+                        <!-- <editor v-model="form.content" :min-height="192" /> -->
+                        <rich-text-editor :min-height="192" @html-upload-complete="handleHtmlUploadComplete" />
+                    </el-form-item>
+                    <el-form-item label="发布时间" prop="publishTime">
+                        <el-date-picker v-model="form.publishTime" clearable type="date" value-format="yyyy-MM-dd"
+                            placeholder="请选择发布时间" />
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                    <el-button type="primary" @click="submitForm">确 定</el-button>
+                    <el-button @click="cancel">取 消</el-button>
+                </div>
+            </el-dialog>
         </el-card>
     </div>
 </template>
@@ -56,9 +81,13 @@
 import axios from 'axios';
 import { mapGetters } from "vuex";
 import { listGroup, getGroup, delGroup, addGroup, updateGroup } from 'api/system/group.js';
-import { listNotice, getNotice } from 'api/system/notice.js'
+import { listNotice, getNotice, addNotice } from 'api/system/notice.js'
+import RichTextEditor from '@/components/OssUpload/RichTextEditor.vue'
 
 export default {
+    components: {
+        RichTextEditor
+    },
     data() {
         return {
             total: 0,
@@ -77,12 +106,33 @@ export default {
                 userId: null,
                 publishTime: null
             },
+            // 添加、修改弹出层标题
+            title: '',
+            // 是否显示添加、修改弹出层
+            open: false,
+            // 表单参数
+            form: {
+                userId: null,
+            },
+            // 表单校验
+            rules: {
+                // userId: [
+                //     { required: true, message: '组长id不能为空', trigger: 'blur' }
+                // ],
+                content: [
+                    { required: true, message: '通知内容不能为空', trigger: 'blur' }
+                ],
+                title: [
+                    { required: true, message: '标题不能为空', trigger: 'blur' }
+                ]
+            }
         };
     },
     computed: {
         ...mapGetters(['userInfo'])
     },
     created() {
+        this.form.userId = this.userInfo.userId;
         getGroup(this.userInfo.groupId).then(res => {
             console.log(res.data);
             this.groupDescription = res.data.description;
@@ -96,7 +146,7 @@ export default {
     //     this.getNoticeListData()
     // },
     methods: {
-        // 单个通知已读
+        // 显示通知详情
         handleNoticeClick(item) {
             getNotice(item.noticeId).then(res => {
                 // 保存当前通知的数据，以在详情弹窗中显示
@@ -114,7 +164,7 @@ export default {
 
         // 获取通知列表数据
         getNoticeListData() {
-            this.queryParams.userId=this.groupCreatorId;
+            this.queryParams.userId = this.groupCreatorId;
             listNotice(this.queryParams).then(response => {
                 this.noticeList = response.rows
                 console.log(this.noticeList)
@@ -125,8 +175,50 @@ export default {
 
         //点击查看更多跳转到notice页面
         goToNoticePage() {
-        this.$router.push('/notice');
-    },
+            this.$router.push('/notice');
+        },
+
+        /** 新增按钮操作 */
+        handleAdd() {
+            this.reset()
+            this.open = true
+            this.title = '添加组内通知'
+        },
+
+        /** 提交按钮 */
+        submitForm() {
+            this.$refs['form'].validate(valid => {
+                if (valid) {
+                    addNotice(this.form).then(response => {
+                        alert('新增成功')
+                        this.open = false
+                        this.getNoticeListData()
+                    })
+                }
+            })
+        },
+        // 表单重置
+        reset() {
+            this.form = {
+                noticeId: null,
+                userId: this.userInfo.userId,
+                title: null,
+                content: null,
+                publishTime: null
+            }
+            //this.resetForm('form')
+        },
+        // 取消按钮
+        cancel() {
+            this.open = false
+            this.reset()
+        },
+        /** oss响应操作 */
+        handleHtmlUploadComplete(fileUrl) {
+            // 在这里处理上传完成后的文件地址
+            console.log('上传完成，文件地址：', fileUrl)
+            this.form.content = fileUrl
+        }
     }
 };
 </script>
