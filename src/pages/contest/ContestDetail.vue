@@ -1,36 +1,39 @@
 <template>
-  <div class="contest-container">
-    <el-card shadow="hover" class="contest-card p-4">
-      <el-row>
-        <el-col :span="24">
-          <h2 class="contest-title mb-3">{{ contest.title }}</h2>
-        </el-col>
-      </el-row>
+  <div>
+    <loading :active.sync="isLoading" :is-full-page="true"></loading>
+    <div class="contest-container">
+      <el-card shadow="hover" class="contest-card p-4">
+        <el-row>
+          <el-col :span="24">
+            <h2 class="contest-title mb-3">{{ contest.title }}</h2>
+          </el-col>
+        </el-row>
 
-      <el-row>
-        <el-col :span="24">
-          <p class="contest-description mb-4">{{ contest.description }}</p>
-        </el-col>
-      </el-row>
+        <el-row>
+          <el-col :span="24">
+            <p class="contest-description mb-4">{{ contest.description }}</p>
+          </el-col>
+        </el-row>
 
-      <div v-for="(question, index) in questionList" :key="index" class="question-container mb-4">
-        <hr style="margin-bottom: 30px" /> <!-- 添加分割线 -->
-        <h3 class="mb-2">{{ (index+1) + '. ' +getQuestionType(question.questionType) + ':' + question.content + ' ('+ question.questionScore + '分)' }}</h3>
-        <div v-if="question.questionType === '1' || question.questionType === '3'">
-          <el-radio-group v-model="answers[index]" class="mt-3">
-            <el-radio v-for="(option, optionIndex) in question.options.split(' ')" :key="optionIndex" :label="option" class="mb-2 ml-2">{{ option }}</el-radio>
-          </el-radio-group>
+        <div v-for="(question, index) in questionList" :key="index" class="question-container mb-4">
+          <hr style="margin-bottom: 30px" /> <!-- 添加分割线 -->
+          <h3 class="mb-2">{{ (index+1) + '. ' + getQuestionType(question.questionType) + ':' + question.content + ' ('+ question.questionScore + '分)' }}</h3>
+          <div v-if="question.questionType === '1' || question.questionType === '3'">
+            <el-radio-group v-model="answers[index]" class="mt-3">
+              <el-radio v-for="(option, optionIndex) in question.options.split(' ')" :key="optionIndex" :label="option" class="mb-2 ml-2">{{ option }}</el-radio>
+            </el-radio-group>
+          </div>
+          <div v-else-if="question.questionType === '2'">
+            <el-checkbox-group v-model="answers[index]" class="mt-3">
+              <el-checkbox v-for="(option, optionIndex) in question.options.split(' ')" :key="optionIndex" :label="option" class="mb-2 ml-2">{{ option }}</el-checkbox>
+            </el-checkbox-group>
+          </div>
         </div>
-        <div v-else-if="question.questionType === '2'">
-          <el-checkbox-group v-model="answers[index]" class="mt-3">
-            <el-checkbox v-for="(option, optionIndex) in question.options.split(' ')" :key="optionIndex" :label="option" class="mb-2 ml-2">{{ option }}</el-checkbox>
-          </el-checkbox-group>
+        <div style="text-align: center;">
+          <el-button type="primary" class="mb-2 ml-2" style="margin-top: 50px;" @click="submitResult">提交答案</el-button>
         </div>
-      </div>
-      <div style="text-align: center;">
-        <el-button type="primary" class="mb-2 ml-2" style="margin-top: 50px;" @click="submitResult">提交答案</el-button>
-      </div>
-    </el-card>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -48,6 +51,7 @@ export default {
             questionList: [],
             answers: [],
             elapsedTime: 0,
+            isLoading: true,
             // 表单参数
             form : {
                 userId: null,

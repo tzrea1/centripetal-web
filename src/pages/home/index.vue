@@ -13,19 +13,15 @@
       <Banner />
     </div>
 
-    <!-- 猿问和手记 -->
-    <Article :article="articleList" />
-
-<!--    &lt;!&ndash; 精英讲师 &ndash;&gt;-->
-<!--    <Teacher :teacher-list="teacherList" />-->
-
     <!-- 答题活动 -->
     <Contest :contestList="contestList" />
+    <!-- VR场景展示 -->
+    <Scene />
   </div>
 </template>
 <script>
 import Banner from './banner.vue'
-import Article from './article.vue'
+import Scene from './scene.vue'
 import Contest from './contest.vue'
 import { getSliderList, getArticle, getTeacher} from 'api/mock/home.js'
 import { listContest} from "api/system/contest";
@@ -130,8 +126,8 @@ export default {
     }
   },
   components: {
+    Scene,
     Banner,
-    Article,
     Contest
   }
 }

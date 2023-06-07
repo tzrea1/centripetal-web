@@ -7,7 +7,7 @@
       </el-col>
       <el-col v-for="contest in filteredContestList" :key="contest.quizActivityId" :span="8">
         <el-card class="card" shadow="hover" @click.native="goToContestDetail(contest)">
-          <img slot="header" :src="prepic_url" class="card-image" />
+          <img slot="header" :src="prepic_url" class="card-image-contest" />
 
           <el-row>
             <el-col :span="24">
@@ -44,7 +44,7 @@ export default {
     data () {
         return {
             search: '',
-            prepic_url:"https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/files/20230510/%E5%85%B1%E6%8C%AF%E7%BB%93%E6%9E%9Cno.1.jpg",
+            prepic_url:"https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/img/cover/contest-cover.png",
             // 答题活动表格数据
             contestList: [],
             total: 0,
@@ -131,9 +131,8 @@ export default {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.card-image {
+.card-image-contest {
     width: 100%;
-    height: 200px;
     object-fit: cover;
 }
 

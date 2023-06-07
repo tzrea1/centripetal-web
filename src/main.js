@@ -4,6 +4,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue'
 import router from 'router/index.js'
 import store from './store/index.js'
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 
 // element-ui
  import {
@@ -35,6 +38,7 @@ import store from './store/index.js'
 // Vue.use(Scrollbar)
 
 Vue.use(ElementUI)
+Vue.use(Loading);
 
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;

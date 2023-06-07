@@ -7,7 +7,6 @@
         <i class="title-icon right-icon" />
       </h2>
     </div>
-
     <div class="all-star m-center">
       <!--      <ul class="best-star star">-->
       <!--        <li v-for="(item,index) in best" :key="index" class="star-item">-->
@@ -23,7 +22,7 @@
       <ul class="all-star-list star">
         <li v-for="(item,index) in contestList" :key="index" class="all-item star-item" :class="getItemclass(2)">
           <el-card class="card" shadow="hover" @click.native="goToContestDetail(item)">
-            <img :src="avatar_url[index]" width="96" height="96" alt="">
+            <img :src="avatar_url[index]" width="120" height="120" alt="">
             <p class="star-name" style="margin-top: 10px">{{ item.title }}</p>
             <div class="star-info">
               <p class="star-type">
@@ -56,7 +55,8 @@ export default {
           avatar_url:[
               "https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/img/icon/contest-icon.png",
               "https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/img/icon/book-icon.png"
-          ]
+          ],
+          prepic_url:"https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/img/cover/contest-cover.png",
       }
   },
   methods: {
@@ -99,7 +99,7 @@ export default {
     .right-icon
       background-position: center -540px;
   .all-star
-    padding-bottom: 36px;
+    padding-bottom: 18px;
     .star
       display: flex;
       align-items: center;
@@ -112,7 +112,7 @@ export default {
           border-radius: 50%;
           transition: all 0.2s;
       &.best-star
-        margin-bottom: 48px;
+        margin-bottom: 24px;
         justify-content: center;
         .star-item
           width: 136px;
