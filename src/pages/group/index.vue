@@ -38,11 +38,22 @@
             </el-row>
 
             <!-- dialog -->
-            <el-dialog title="通知详情" :visible.sync="detailVisible">
-                <p>Content: {{ currentNotice.content }}</p>
-                <p>Notice ID: {{ currentNotice.noticeId }}</p>
-                <p>Publish Time: {{ currentNotice.publishTime }}</p>
-                <p>Title: {{ currentNotice.title }}</p>
+            <el-dialog title="通知详情" :visible.sync="detailVisible" class="notice-dialog" width="80%">
+                <el-row>
+                    <el-col :span="4">
+                        <p class="notice-id">{{ currentNotice.noticeId }}</p>
+                    </el-col>
+                    <el-col :span="20">
+                        <p class="notice-title">{{ currentNotice.title }}</p>
+                    </el-col>
+                </el-row>
+                <hr class="separator" />
+                <el-row>
+                    <el-col :span="24">
+                        <p class="notice-time">{{ currentNotice.publishTime }}</p>
+                    </el-col>
+                </el-row>
+                <hr class="separator" />
                 <el-row>
                     <el-col :span="24">
                         <div class="notice-content" v-html="contentHtml" />
@@ -244,10 +255,10 @@ export default {
             this.form.content = fileUrl
         },
         // 打开编辑小组成员的弹窗
-        editGroupMembers() {
+        editGroupMembers () {
             this.editGroupVisible = true;
-            this.editGroupForm.userIdStr='';
-            this.editGroupForm.groupId=null;
+            this.editGroupForm.userIdStr = '';
+            this.editGroupForm.groupId = null;
         },
 
         // 提交编辑小组成员的表单
@@ -364,5 +375,42 @@ export default {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+}
+
+/* Added styles */
+.notice {
+    margin-top: 30px;
+}
+
+.notice-dialog {
+    max-width: none;
+}
+
+.notice-id {
+    color: #ff7f7f;
+    font-weight: bold;
+    text-align: left;
+}
+
+.notice-title {
+    color: black;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.notice-time {
+    font-size: 1.2em;
+    text-align: left;
+}
+
+.separator {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #f2f2f2;
+}
+
+.dialog-footer {
+    text-align: right;
 }
 </style>

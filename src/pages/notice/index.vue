@@ -2,13 +2,8 @@
   <div class="notice m-center">
     <!-- nav -->
     <ul class="notice-nav">
-      <li
-        v-for="(nav,index) in navList"
-        :key="nav.code"
-        class="nav-item"
-        :class="{active: currentNavIndex === index}"
-        @click="handleNavClick(nav, index)"
-      >
+      <li v-for="(nav, index) in navList" :key="nav.code" class="nav-item" :class="{ active: currentNavIndex === index }"
+        @click="handleNavClick(nav, index)">
         {{ nav.title }}
       </li>
     </ul>
@@ -23,13 +18,8 @@
         </span>
       </div>
       <ul v-if="noticeList.length">
-        <li
-          v-for="(item,index) in noticeList"
-          :key="index"
-          ref="NoticeList"
-          class="list-item"
-          :class="{ready: item.isRead}"
-        >
+        <li v-for="(item, index) in noticeList" :key="index" ref="NoticeList" class="list-item"
+          :class="{ ready: item.isRead }">
           <div class="item-icon">
             小组
           </div>
@@ -48,11 +38,22 @@
     </div>
 
     <!-- dialog -->
-    <el-dialog title="通知详情" :visible.sync="detailVisible">
-      <p>Content: {{ currentNotice.content }}</p>
-      <p>Notice ID: {{ currentNotice.noticeId }}</p>
-      <p>Publish Time: {{ currentNotice.publishTime }}</p>
-      <p>Title: {{ currentNotice.title }}</p>
+    <el-dialog title="通知详情" :visible.sync="detailVisible" class="notice-dialog" width="80%">
+      <el-row>
+        <el-col :span="4">
+          <p class="notice-id">{{ currentNotice.noticeId }}</p>
+        </el-col>
+        <el-col :span="20">
+          <p class="notice-title">{{ currentNotice.title }}</p>
+        </el-col>
+      </el-row>
+      <hr class="separator" />
+      <el-row>
+        <el-col :span="24">
+          <p class="notice-time">{{ currentNotice.publishTime }}</p>
+        </el-col>
+      </el-row>
+      <hr class="separator" />
       <el-row>
         <el-col :span="24">
           <div class="notice-content" v-html="contentHtml" />
@@ -64,7 +65,8 @@
     </el-dialog>
 
     <!-- pagination -->
-    <pagination :total="total" :page.sync="queryParams.pageNum" :size="queryParams.pageSize" @change="getNoticeListData" />
+    <pagination :total="total" :page.sync="queryParams.pageNum" :size="queryParams.pageSize"
+      @change="getNoticeListData" />
 
     <!-- dialog -->
     <notice-setting :list="settingList" :visible.sync="dialogVisible"></notice-setting>
@@ -80,7 +82,7 @@ import { getGroup, } from 'api/system/group.js';
 import { mapGetters } from "vuex";
 import axios from 'axios'
 export default {
-  data () {
+  data() {
     return {
       total: 0,             // 总数
       page: 1,              // 当前页
@@ -102,29 +104,29 @@ export default {
       groupCreatorId: "",   //小组建立者Id
     }
   },
-  created () {
+  created() {
     this.navList = [
       { title: '全部', code: 0 },
       { title: '小组', code: 1 },
       { title: '系统', code: 2 }
     ],
-    getGroup(this.userInfo.groupId).then(res => {               
-            this.groupCreatorId = res.data.creatorId;
-            this.getNoticeListData();
-        })
+      getGroup(this.userInfo.groupId).then(res => {
+        this.groupCreatorId = res.data.creatorId;
+        this.getNoticeListData();
+      })
   },
   // mounted () {
   //   this.getNoticeListData()
   // },
   methods: {
     // 选项卡切换
-    handleNavClick (nav, index) {
+    handleNavClick(nav, index) {
       this.page = 1
       this.currentNavIndex = index
       this.getNoticeListData()
     },
     // 单个通知删除
-    handleDeleteClick (item) {
+    handleDeleteClick(item) {
       const data = {
         id: item.id
       }
@@ -141,7 +143,7 @@ export default {
       })
     },
     // 单个通知已读
-    handleNoticeClick (item) {
+    handleNoticeClick(item) {
       // const data = {
       //   id: item.id
       // }
@@ -170,7 +172,7 @@ export default {
       })
     },
     // 全部标记已读
-    handleAllReadClick () {
+    handleAllReadClick() {
       const postIds = this.noticeList.filter(notice => !notice.isRead).map(notice => notice.id)
       const data = {
         ids: postIds
@@ -188,17 +190,17 @@ export default {
       })
     },
     // 通知设置点击
-    handleSettingClick () {
+    handleSettingClick() {
       this.dialogVisible = true
       this.getNoticeSettingData()
     },
     // 分页值更新
-    handlePaginationChange (page) {
+    handlePaginationChange(page) {
       this.page = page
       this.getNoticeListData()
     },
     // 获取通知列表数据
-    getNoticeListData () {
+    getNoticeListData() {
       // const params = {
       //   page: this.page,
       //   code: this.currentCode
@@ -219,7 +221,7 @@ export default {
       //   this.noticeList = []
       //   this.total = 0
       // })
-      this.queryParams.userId=this.groupCreatorId;
+      this.queryParams.userId = this.groupCreatorId;
       listNotice(this.queryParams).then(response => {
         console.log(response);
         this.noticeList = response.rows
@@ -228,7 +230,7 @@ export default {
       })
     },
     // 获取通知设置数据
-    getNoticeSettingData () {
+    getNoticeSettingData() {
       getNoticeSetting().then(res => {
         this.settingList = []
         let { code, data } = res
@@ -241,7 +243,7 @@ export default {
     }
   },
   computed: {
-    currentCode () {
+    currentCode() {
       return this.navList[this.currentNavIndex].code || ''
     },
     ...mapGetters(['userInfo'])
@@ -251,7 +253,7 @@ export default {
     Empty,
     NoticeSetting: () => import('./notice-setting.vue')
   },
-  beforeDestroy () {
+  beforeDestroy() {
     clearTimeout(this.timer)
   }
 }
@@ -261,6 +263,33 @@ export default {
   @import '~assets/stylus/mixin.styl';
   .notice
     margin-top: 30px;
+    .notice-dialog
+      // remove max-width or set it to a larger value
+      max-width: none
+
+    .notice-id
+      color: #ff7f7f
+      font-weight: bold
+      text-align: left
+
+    .notice-title
+      color: black
+      font-size: 1.5em
+      font-weight: bold
+      text-align: center
+
+    .notice-time
+      font-size: 1.2em
+      text-align: left
+
+    .separator
+      width: 100%
+      border: 0
+      border-top: 1px solid #f2f2f2
+
+    .dialog-footer
+      text-align: right
+
     .notice-nav
       padding-left: 32px;
       .nav-item
@@ -338,4 +367,8 @@ export default {
             right: 20px;
             color: $font-four-color;
             cursor: pointer;
+
+          
+
+            
 </style>
