@@ -1,8 +1,20 @@
 <template>
   <div class="card-container">
     <el-card>
+      <el-row>
+        <el-col :span="12">
+          <h2 class="content-title">内容学习</h2>
+        </el-col>
+        <el-col :span="12">
+          <el-input
+            class="search-input"
+            placeholder="搜索活动标题"
+            v-model="searchText"
+          ></el-input>
+        </el-col>
+      </el-row>
       <el-row :gutter="20">
-        <el-col :span="8" v-for="study in studies" :key="study.ph_study_id">
+        <el-col :span="8" v-for="study in filteredStudies" :key="study.ph_study_id">
           <el-card
             class="card"
             shadow="hover"
@@ -37,11 +49,12 @@
       </el-row>
       <div class="pagination-container">
         <el-pagination
+          background
           class="pagination"
           :current-page="pageNum"
           :page-size="pageSize"
           :total="total"
-          layout="sizes, prev, pager, next, jumper"
+          layout="prev, pager, next, jumper"
           @current-change="handlePageChange"
         ></el-pagination>
       </div>
@@ -56,11 +69,24 @@ import { listContent } from "@/api/system/content.js";
 export default {
   data() {
     return {
+      // 存储搜索框中的文本
+      searchText: '',
+
       studies: [],
       total: 0, // 存储总的数据条数
       pageNum: 1, // 当前页
       pageSize: 9, // 每页的数据条数
     };
+  },
+  computed: {
+    filteredStudies() {
+      if (!this.searchText) {
+        return this.studies;
+      }
+      return this.studies.filter(study =>
+        study.title.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    },
   },
   methods: {
     goToStudyDetail(study) {
@@ -90,8 +116,21 @@ export default {
 
 
 <style>
+
+.content-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px 0;
+  margin-left: 20px;
+}
+
+.search-input {
+  float: right;
+  margin: 20px 0;
+}
+
 .card-container {
-  overflow-x: hidden; 
+  overflow-x: hidden;
   overflow-y: auto;
   max-height: 100vh;
 }
