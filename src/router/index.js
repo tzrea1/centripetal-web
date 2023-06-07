@@ -87,9 +87,6 @@ const routes = [
     path: '/notice',
     name: 'NoticeIndex',
     component: NoticeIndex,
-    meta: {
-      requireAuth: true
-    }
   },
   {
     path: '/cart',
