@@ -9,31 +9,34 @@
     </div>
 
     <div class="all-star m-center">
-<!--      <ul class="best-star star">-->
-<!--        <li v-for="(item,index) in best" :key="index" class="star-item">-->
-<!--          <img :src="item.avatar" width="56" height="56" alt="">-->
-<!--          <p class="star-name">-->
-<!--            {{ item.title }}-->
-<!--          </p>-->
-<!--          <p class="star-type">-->
-<!--            {{ item.state }}-->
-<!--          </p>-->
-<!--        </li>-->
-<!--      </ul>-->
+      <!--      <ul class="best-star star">-->
+      <!--        <li v-for="(item,index) in best" :key="index" class="star-item">-->
+      <!--          <img :src="item.avatar" width="56" height="56" alt="">-->
+      <!--          <p class="star-name">-->
+      <!--            {{ item.title }}-->
+      <!--          </p>-->
+      <!--          <p class="star-type">-->
+      <!--            {{ item.state }}-->
+      <!--          </p>-->
+      <!--        </li>-->
+      <!--      </ul>-->
       <ul class="all-star-list star">
         <li v-for="(item,index) in contestList" :key="index" class="all-item star-item" :class="getItemclass(2)">
-          <img :src="item.avatar" width="96" height="96" alt="">
-          <div class="star-info">
-            <p class="star-type">
-              {{ item.description }}
-            </p>
-            <p class="star-name ellipsis">
-              {{ item.title }}
-            </p>
-            <p class="star-number">
-              时长{{ item.timeLimit }}分钟
-            </p>
-          </div>
+          <el-card class="card" shadow="hover" @click.native="goToContestDetail(item)">
+            <img :src="avatar_url[index]" width="96" height="96" alt="">
+            <p class="star-name" style="margin-top: 10px">{{ item.title }}</p>
+            <div class="star-info">
+              <p class="star-type">
+                {{ item.description }}
+              </p>
+              <p class="star-name ellipsis">
+                {{ item.title }}
+              </p>
+              <p class="star-number">
+                时长{{ item.timeLimit }}分钟
+              </p>
+            </div>
+          </el-card>
         </li>
       </ul>
     </div>
@@ -48,12 +51,23 @@ export default {
       required: true
     }
   },
+  data () {
+      return {
+          avatar_url:[
+              "https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/img/icon/contest-icon.png",
+              "https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/img/icon/book-icon.png"
+          ]
+      }
+  },
   methods: {
     // 获取背景图片的位置
     getPositionStyle (index) {
       return {
         'background-position': `center -${index * BASE_WIDTH}px`
       }
+    },
+    goToContestDetail (contest) {
+        this.$router.push({ path: `/contest/${contest.quizActivityId}` });
     },
     // 获取样式
     getItemclass (code) {
@@ -127,7 +141,7 @@ export default {
         justify-content: center;
         .all-item
           position: relative;
-          margin: 0 28px 24px 0;
+          margin: 0 28px 36px 36px;
           .star-info
             display: none;
             position: absolute;

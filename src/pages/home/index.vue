@@ -26,7 +26,6 @@
 <script>
 import Banner from './banner.vue'
 import Article from './article.vue'
-import Teacher from './teacher.vue'
 import Contest from './contest.vue'
 import { getSliderList, getArticle, getTeacher} from 'api/mock/home.js'
 import { listContest} from "api/system/contest";
