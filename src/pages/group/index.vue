@@ -2,8 +2,11 @@
     <div class="study-container">
         <el-card shadow="hover" class="study-card">
             <el-row>
-                <el-col :span="24">
+                <el-col :span="20">
                     <h2 class="study-title">我的小组 : {{ this.groupName }}</h2>
+                </el-col>
+                <el-col :span="4">
+                    <el-button type="primary" class="more-button" @click="editGroupMembers">编辑小组成员</el-button>
                 </el-col>
             </el-row>
 
@@ -16,8 +19,8 @@
             <el-row>
                 <div class="title-container">
                     <h3 class="notice-list-title">通知列表</h3>
-                    <!-- <button class="more-button" @click="goToNoticePage">查看更多</button> -->
-                    <button class="more-button" @click="handleAdd">新增</button>
+                    <el-button type="primary" class="more-button" @click="handleAdd">新增</el-button>
+                    <el-button type="primary" class="more-button" @click="goToNoticePage">查看更多</el-button>
                 </div>
                 <ul v-if="noticeList.length">
                     <li v-for="(item, index) in noticeList.slice(0, 5)" :key="index" ref="NoticeList" class="list-item"
@@ -54,7 +57,7 @@
             <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
                 <el-form ref="form" :model="form" :rules="rules" label-width="80px">
                     <el-form-item label="组长id" prop="userId">
-                        <el-input v-model="form.userId" placeholder="请输入组长Id" disabled/>
+                        <el-input v-model="form.userId" placeholder="请输入组长Id" disabled />
                     </el-form-item>
                     <el-form-item label="通知标题">
                         <el-input v-model="form.title" placeholder="请输入标题" />
@@ -73,6 +76,22 @@
                     <el-button @click="cancel">取 消</el-button>
                 </div>
             </el-dialog>
+
+            <!-- 更新小组成员的弹窗 -->
+            <el-dialog title="编辑小组成员" :visible.sync="editGroupVisible">
+                <el-form :model="editGroupForm">
+                    <el-form-item label="用户ID列表">
+                        <el-input v-model="editGroupForm.userIdsStr" placeholder="请输入用户ID列表，用逗号分隔" />
+                    </el-form-item>
+                    <el-form-item label="小组ID">
+                        <el-input v-model="editGroupForm.groupId" placeholder="请输入小组ID" />
+                    </el-form-item>
+                </el-form>
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="editGroupVisible = false">取消</el-button>
+                    <el-button type="primary" @click="submitEditGroupForm">确定</el-button>
+                </span>
+            </el-dialog>
         </el-card>
     </div>
 </template>
@@ -83,6 +102,7 @@ import { mapGetters } from "vuex";
 import { listGroup, getGroup, delGroup, addGroup, updateGroup } from 'api/system/group.js';
 import { listNotice, getNotice, addNotice } from 'api/system/notice.js'
 import RichTextEditor from '@/components/OssUpload/RichTextEditor.vue'
+import { updateUserGroupIds } from 'api/system/user.js'
 
 export default {
     components: {
@@ -125,7 +145,12 @@ export default {
                 title: [
                     { required: true, message: '标题不能为空', trigger: 'blur' }
                 ]
-            }
+            },
+            editGroupVisible: false, // 是否显示编辑小组成员的弹窗
+            editGroupForm: { // 编辑小组成员的表单数据
+                userIdsStr: '',
+                groupId: null
+            },
         };
     },
     computed: {
@@ -167,7 +192,6 @@ export default {
             this.queryParams.userId = this.groupCreatorId;
             listNotice(this.queryParams).then(response => {
                 this.noticeList = response.rows
-                console.log(this.noticeList)
                 this.total = response.total
                 this.loading = false
             })
@@ -218,6 +242,26 @@ export default {
             // 在这里处理上传完成后的文件地址
             console.log('上传完成，文件地址：', fileUrl)
             this.form.content = fileUrl
+        },
+        // 打开编辑小组成员的弹窗
+        editGroupMembers() {
+            this.editGroupVisible = true;
+            this.editGroupForm.userIdStr='';
+            this.editGroupForm.groupId=null;
+        },
+
+        // 提交编辑小组成员的表单
+        submitEditGroupForm() {
+            // 复制表单数据，避免直接修改数据
+            let formData = { ...this.editGroupForm };
+
+            // 将用户ID字段从逗号分隔的字符串转换为列表
+            formData.userIds = formData.userIdsStr.split(',').map(userId => parseInt(userId));
+
+            updateUserGroupIds(formData).then(response => {
+                alert('编辑小组成员成功')
+                this.editGroupVisible = false;
+            })
         }
     }
 };

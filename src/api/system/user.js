@@ -42,3 +42,12 @@ export function delUser(userId) {
     method: 'delete'
   })
 }
+
+// 批量更新用户组ID
+export function updateUserGroupIds(data) {
+  return request({
+      url: '/system/user/group/'+data.groupId,
+      method: 'put',
+      data:data.userIds
+  })
+}
