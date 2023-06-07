@@ -76,6 +76,8 @@ import Empty from 'components/empty/empty.vue'
 import { ERR_OK } from 'api/mock/config.js'
 import { getNoticeList, getNoticeSetting, noticeReadOne, noticeReadAll, noticeNoticeDelete } from 'api/mock/notice.js'
 import { listNotice, getNotice, delNotice, addNotice, updateNotice } from 'api/system/notice.js'
+import { getGroup, } from 'api/system/group.js';
+import { mapGetters } from "vuex";
 import axios from 'axios'
 export default {
   data () {
@@ -97,6 +99,7 @@ export default {
       detailVisible: false,  // 详情弹窗是否可见
       currentNotice: {},    // 当前的通知，用于在详情弹窗中显示
       contentHtml: '',          // 窗口中显示的通知HTML内容
+      groupCreatorId: "",   //小组建立者Id
     }
   },
   created () {
@@ -104,11 +107,15 @@ export default {
       { title: '全部', code: 0 },
       { title: '小组', code: 1 },
       { title: '系统', code: 2 }
-    ]
+    ],
+    getGroup(this.userInfo.groupId).then(res => {               
+            this.groupCreatorId = res.data.creatorId;
+            this.getNoticeListData();
+        })
   },
-  mounted () {
-    this.getNoticeListData()
-  },
+  // mounted () {
+  //   this.getNoticeListData()
+  // },
   methods: {
     // 选项卡切换
     handleNavClick (nav, index) {
@@ -152,6 +159,8 @@ export default {
       getNotice(item.noticeId).then(res => {
         // 保存当前通知的数据，以在详情弹窗中显示
         this.currentNotice = res.data;
+        //每次等待url发回响应时，先将contentHtml设置为空，再重新接收，防止错误显示
+        this.contentHtml = '';
         axios.get(this.currentNotice.content).then(response => {
           this.contentHtml = response.data
         })
@@ -210,7 +219,9 @@ export default {
       //   this.noticeList = []
       //   this.total = 0
       // })
+      this.queryParams.userId=this.groupCreatorId;
       listNotice(this.queryParams).then(response => {
+        console.log(response);
         this.noticeList = response.rows
         this.total = response.total
         this.loading = false
@@ -232,7 +243,8 @@ export default {
   computed: {
     currentCode () {
       return this.navList[this.currentNavIndex].code || ''
-    }
+    },
+    ...mapGetters(['userInfo'])
   },
   components: {
     Pagination,
