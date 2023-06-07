@@ -27,7 +27,7 @@ const StudentSchema = new Schema({
   }
 })
 
-const studentModel = mongoose.model('student', StudentSchema)
+const studentModel = mongoose.model('contest.vue', StudentSchema)
 // 判断有没有数据，没有则初始化
 studentModel.find((err, data) => {
   if (!data || data.length === 0) {

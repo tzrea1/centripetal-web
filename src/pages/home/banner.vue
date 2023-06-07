@@ -20,11 +20,10 @@ export default {
   },
   created () {
     this.banner = [
-      { id: 1, title: 'Web前端攻城狮', desc: '从未接触编程也可以学好' },
-      { id: 2, title: 'Java攻城狮', desc: '综合就业排名第一' },
-      { id: 3, title: 'Python攻城狮', desc: '迅速崛起的主流编程语言' },
-      { id: 4, title: 'Android攻城狮', desc: '移动设备市场份额第一' },
-      { id: 5, title: 'PHP攻城狮', desc: '最为广泛的Web后端开发语言' }
+      { id: 1, title: 'VR场景学习', desc: '安装手机APP，获取沉浸式体验' },
+      { id: 2, title: '党史内容学习', desc: '党史学习内容，每周必刷' },
+      { id: 3, title: '小组管理', desc: '党史学习小组、学习通知' },
+      { id: 4, title: '在线答题竞赛', desc: '检验党史学习成果' },
     ]
   }
 }
@@ -33,7 +32,7 @@ export default {
   @import '~assets/stylus/variables.styl';
   .course-banner
     position: absolute;
-    left: 216px;
+    left: 0;
     right: 0;
     bottom: 0;
     padding: 0 18px;
@@ -49,7 +48,6 @@ export default {
       top: 0;
       width: 68px;
       height: 68px;
-      background: url('https://www.imooc.com/static/img/index/new/new-path.png') no-repeat;
     .banner-item
       flex: 1;
       height: 100%;

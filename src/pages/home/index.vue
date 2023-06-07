@@ -5,40 +5,38 @@
 
     <!-- 导航和轮播 -->
     <div class="home-container m-center">
-      <Nav />
       <mooc-carousel :height="316" trigger="click" @change="handelCarouselChange">
         <mooc-carousel-item v-for="(item,index) in swiperList" :key="index">
           <img :src="item.img" class="swiper-img">
         </mooc-carousel-item>
       </mooc-carousel>
-
       <Banner />
     </div>
 
     <!-- 猿问和手记 -->
     <Article :article="articleList" />
 
-    <!-- 精英讲师 -->
-    <Teacher :teacher-list="teacherList" />
+<!--    &lt;!&ndash; 精英讲师 &ndash;&gt;-->
+<!--    <Teacher :teacher-list="teacherList" />-->
 
-    <!-- 全明星 -->
-    <Student :allstar="allstar" />
+    <!-- 答题活动 -->
+    <Contest :contestList="contestList" />
   </div>
 </template>
 <script>
-import Nav from './nav.vue'
 import Banner from './banner.vue'
 import Article from './article.vue'
 import Teacher from './teacher.vue'
-import Student from './student.vue'
-import { getSliderList, getArticle, getTeacher, getAllStar } from 'api/mock/home.js'
+import Contest from './contest.vue'
+import { getSliderList, getArticle, getTeacher} from 'api/mock/home.js'
+import { listContest} from "api/system/contest";
 import { ERR_OK } from 'api/mock/config.js'
 export default {
   name: 'Home',
   data () {
     return {
       swiperList: [],
-      allstar: [],
+      contestList: [],
       teacherList: [],
       articleList: {},
       currentSwiper: '',
@@ -55,7 +53,7 @@ export default {
     this.getBanner()
     this.getArticleList()
     this.getTeacherList()
-    this.getAllStarList()
+    this.getContestListList()
   },
   methods: {
     // 滚动轮播滚动完毕事件
@@ -107,19 +105,22 @@ export default {
         this.teacherList = []
       })
     },
-    // 获取全明星学员信息
-    getAllStarList () {
-      getAllStar().then(res => {
-        let { code, data, msg} = res
-        if (code === ERR_OK) {
-          this.allstar = data
-        } else {
-          this.$message.error(msg)
-          this.allstar = []
+    // 获取答题信息
+    getContestListList () {
+        let queryParams;
+        queryParams = {
+            pageNum: 1,
+                pageSize: 10,
+                creatorId: null,
+                title: null,
+                state: null,
+                startTime: null,
+                endTime: null
         }
-      }).catch(() => {
-        this.allstar = []
-      })
+        listContest(queryParams).then(response => {
+            this.contestList = response.rows
+            // console.log(this.contestList)
+        })
     }
   },
   computed: {
@@ -130,11 +131,9 @@ export default {
     }
   },
   components: {
-    Nav,
     Banner,
     Article,
-    Teacher,
-    Student
+    Contest
   }
 }
 </script>
@@ -156,9 +155,10 @@ export default {
       position: relative;
       box-shadow: 0 12px 24px 0 $shadow;
       border-radius: 8px;
+      height: 444px;
       .mooc-carousel
         position: absolute;
-        left: 216px;
+        left: 0;
         top: 0;
         right: 0;
         >>> .mooc-carousel-indicators

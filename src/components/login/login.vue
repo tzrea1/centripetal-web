@@ -93,6 +93,7 @@
 
 import {mapMutations} from 'vuex'
 import {getCodeImg, logout, getInfo} from '@/api/login'
+import {getUser} from "api/system/user";
 import Cookies from 'js-cookie'
 import {encrypt, decrypt} from '@/utils/jsencrypt'
 
@@ -173,8 +174,11 @@ export default {
                     }
                     this.$store.dispatch('Login', this.loginForm).then(() => {
                         getInfo().then(res => {
-                            console.log(res.user)
-                            this.setUserInfo(res.user)
+                            let user_id = res.user.userId;
+                            getUser(user_id).then(res =>{
+                                console.log(res)
+                                this.setUserInfo(res.data)
+                            })
                         })
                         this.setShowLogin(false)
                     }).catch(() => {

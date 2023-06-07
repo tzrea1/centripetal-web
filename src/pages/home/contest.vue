@@ -3,42 +3,35 @@
     <div class="m-center">
       <h2 class="home-title">
         <i class="title-icon left-icon" />
-        吊／炸／天／全／明／星
+        热／门／答／题／活／动
         <i class="title-icon right-icon" />
       </h2>
     </div>
 
     <div class="all-star m-center">
-      <ul class="best-star star">
-        <li v-for="(item,index) in best" :key="index" class="star-item">
-          <img :src="item.avatar" width="56" height="56" alt="">
-          <p class="star-name">
-            {{ item.name }}
-          </p>
-          <p class="star-type">
-            {{ item.type.text }}
-          </p>
-          <span class="star-crown" :style="getPositionStyle(index)" />
-        </li>
-      </ul>
+<!--      <ul class="best-star star">-->
+<!--        <li v-for="(item,index) in best" :key="index" class="star-item">-->
+<!--          <img :src="item.avatar" width="56" height="56" alt="">-->
+<!--          <p class="star-name">-->
+<!--            {{ item.title }}-->
+<!--          </p>-->
+<!--          <p class="star-type">-->
+<!--            {{ item.state }}-->
+<!--          </p>-->
+<!--        </li>-->
+<!--      </ul>-->
       <ul class="all-star-list star">
-        <li v-for="(item,index) in student" :key="index" class="all-item star-item" :class="getItemclass(item.type.code)">
-          <img :src="item.avatar" width="48" height="48" alt="">
+        <li v-for="(item,index) in contestList" :key="index" class="all-item star-item" :class="getItemclass(2)">
+          <img :src="item.avatar" width="96" height="96" alt="">
           <div class="star-info">
             <p class="star-type">
-              ="{{ item.type.text }}"=
+              {{ item.description }}
             </p>
             <p class="star-name ellipsis">
-              {{ item.name }}
+              {{ item.title }}
             </p>
-            <p v-if="item.type.code==1" class="star-number">
-              一周获得{{ item.number }}积分
-            </p>
-            <p v-if="item.type.code==2" class="star-number">
-              一周发布{{ item.number }}篇手记
-            </p>
-            <p v-if="item.type.code==3" class="star-number">
-              一周解题{{ item.number }}个
+            <p class="star-number">
+              时长{{ item.timeLimit }}分钟
             </p>
           </div>
         </li>
@@ -50,7 +43,7 @@
 const BASE_WIDTH = 18
 export default {
   props: {
-    allstar: {
+    contestList: {
       type: Array,
       required: true
     }
@@ -74,10 +67,10 @@ export default {
   },
   computed: {
     best () {
-      return this.allstar.slice(0, 4)
+      return this.contestList.slice(0, 4)
     },
-    student () {
-      return this.allstar.slice(4)
+    contest () {
+      return this.contestList.slice(4)
     }
   }
 }

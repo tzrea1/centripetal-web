@@ -14,6 +14,5 @@ const getters = {
     loginAction : state => state.login.action,
     userInfo : state => state.login.userinfo,
     scrollTop : state => state.scroll.scrollTop
-
 }
 export default getters
