@@ -17,8 +17,8 @@
         <el-col :span="24">
           <el-image
             class="study-image"
-            :src="study.prepic_url"
-            :preview-src-list="[study.prepic_url]"
+            :src="study.prepicUrl"
+            :preview-src-list="[study.prepicUrl]"
           ></el-image>
         </el-col>
       </el-row>
@@ -33,7 +33,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
+import { getContent } from "@/api/system/content.js";
 
 export default {
   data() {
@@ -42,25 +43,20 @@ export default {
       studyContent: "",
     };
   },
-  created() {
-    setTimeout(() => {
-      this.study = {
-        ph_study_id: 1,
-        creator_id: 1,
-        title: "党史学习1",
-        description: "这是第一个党史学习活动",
-        state: "ongoing",
-        prepic_url:
-          "https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/files/20230510/%E5%85%B1%E6%8C%AF%E7%BB%93%E6%9E%9Cno.1.jpg",
-        content_url:
-          "http://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/files/20230605/content_1685980377579_587.html",
-      };
+  methods: {
+    async loadStudyDetail() {
+      const ph_study_id = this.$route.params.ph_study_id; // 从路由参数中获取当前学习活动的id
+      const studyDetail = await getContent(ph_study_id); // 调用API方法获取数据
+      this.study = studyDetail.data;
+      console.log(this.study);
       // Fetch the content of the HTML file
-      axios.get(this.study.content_url).then(response => {
+      axios.get(this.study.contentUrl).then((response) => {
         this.studyContent = response.data;
       });
-      // this.studyContent = "<p>这里是党史内容学习的具体内容...</p>";
-    }, 500);
+    },
+  },
+  created() {
+    this.loadStudyDetail();
   },
 };
 </script>

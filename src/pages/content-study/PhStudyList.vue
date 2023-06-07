@@ -1,73 +1,97 @@
 <template>
   <div class="card-container">
-    <el-row :gutter="20">
-      <el-col :span="8" v-for="study in studies" :key="study.ph_study_id">
-        <el-card class="card" shadow="hover" @click.native="goToStudyDetail(study)">
-          <img :src="study.prepic_url" class="card-image" slot="header" />
+    <el-card>
+      <el-row :gutter="20">
+        <el-col :span="8" v-for="study in studies" :key="study.ph_study_id">
+          <el-card
+            class="card"
+            shadow="hover"
+            @click.native="goToStudyDetail(study)"
+          >
+            <img :src="study.prepicUrl" class="card-image" slot="header" />
 
-          <el-row>
-            <el-col :span="24">
-              <h3 class="el-card__title">{{ study.title }}</h3>
-            </el-col>
-          </el-row>
+            <el-row>
+              <el-col :span="24">
+                <h3 class="el-card__title">{{ study.title }}</h3>
+              </el-col>
+            </el-row>
 
-          <el-row>
-            <el-col :span="24">
-              <p class="el-card__description">{{ study.description }}</p>
-            </el-col>
-          </el-row>
+            <el-row>
+              <el-col :span="24">
+                <p class="el-card__description">{{ study.description }}</p>
+              </el-col>
+            </el-row>
 
-          <el-row>
-            <el-col :span="24">
-              <el-tag
-                class="el-card__status"
-                :type="study.state === 'completed' ? 'success' : 'danger'"
-              >
-                {{ study.state === 'completed' ? '已结束' : '进行中' }}
-              </el-tag>
-            </el-col>
-          </el-row>
-
-        </el-card>
-      </el-col>
-    </el-row>
+            <el-row>
+              <el-col :span="24">
+                <el-tag
+                  class="el-card__status"
+                  :type="study.state === 'completed' ? 'success' : 'danger'"
+                >
+                  {{ study.state === "completed" ? "已结束" : "进行中" }}
+                </el-tag>
+              </el-col>
+            </el-row>
+          </el-card>
+        </el-col>
+      </el-row>
+      <div class="pagination-container">
+        <el-pagination
+          class="pagination"
+          :current-page="pageNum"
+          :page-size="pageSize"
+          :total="total"
+          layout="sizes, prev, pager, next, jumper"
+          @current-change="handlePageChange"
+        ></el-pagination>
+      </div>
+    </el-card>
   </div>
 </template>
 
 
-<script>  
-export default {  
-  data() {  
-    return {  
-      studies: [
-        {  
-          ph_study_id: 1,  
-          title: "党史学习 1",  
-          description: "这是第一个党史学习活动",  
-          state: "ongoing",  
-          prepic_url: "https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/files/20230510/%E5%85%B1%E6%8C%AF%E7%BB%93%E6%9E%9Cno.1.jpg",
-        },  
-        {  
-          ph_study_id: 2,  
-          title: "党史学习 2",  
-          description: "这是第二个党史学习活动",  
-          state: "completed",  
-          prepic_url: "https://centripetal-oss.oss-cn-shanghai.aliyuncs.com/centripetal/files/20230510/%E5%85%B1%E6%8C%AF%E7%BB%93%E6%9E%9Cno.1.jpg",  
-        },  
-        // 添加更多党史内容学习数据...  
-      ] 
-    };  
-  },  
-  methods: {  
-    goToStudyDetail(study) {  
-      this.$router.push({ path: `/study/${study.ph_study_id}` });  
-    },  
+<script>
+import { listContent } from "@/api/system/content.js";
+
+export default {
+  data() {
+    return {
+      studies: [],
+      total: 0, // 存储总的数据条数
+      pageNum: 1, // 当前页
+      pageSize: 9, // 每页的数据条数
+    };
   },
-};  
+  methods: {
+    goToStudyDetail(study) {
+      this.$router.push({ path: `/study/${study.phStudyId}` });
+    },
+    async getStudies(page) {
+      const data = await listContent({
+        pageNum: page,
+        pageSize: this.pageSize,
+      }); // 分页参数传入接口
+      this.studies = data.rows; // 将获取到的数据赋值给studies
+      this.total = data.total; // 更新数据总条数
+      console.log(data);
+      console.log(this.studies);
+    },
+    handlePageChange(page) {
+      this.pageNum = page; // 更新当前页数
+      this.getStudies(page); // 根据新的页数获取数据
+    },
+  },
+  created() {
+    this.getStudies(this.pageNum); // 在组件被创建后立即调用getStudies方法
+  },
+};
 </script>
+
+
 
 <style>
 .card-container {
+  overflow-x: hidden; 
   overflow-y: auto;
   max-height: 100vh;
 }
@@ -97,5 +121,11 @@ export default {
 
 .el-card__status {
   margin-top: 10px;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 </style>
