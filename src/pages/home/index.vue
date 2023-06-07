@@ -6,7 +6,7 @@
     <!-- 导航和轮播 -->
     <div class="home-container m-center">
       <mooc-carousel
-        :height="316"
+        :height="400"
         trigger="click"
         @change="handelCarouselChange"
       >
@@ -190,7 +190,7 @@ export default {
     position: relative;
     box-shadow: 0 12px 24px 0 $shadow;
     border-radius: 8px;
-    height: 444px;
+    height: 525px;
 
     .mooc-carousel {
       position: absolute;
@@ -207,7 +207,7 @@ export default {
       .swiper-img {
         display: block;
         width: 100%;
-        height: 316px;
+        height: 400px;
         border-top-right-radius: 8px;
       }
     }
