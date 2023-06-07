@@ -28,6 +28,31 @@
           <div v-html="studyContent" class="study-content"></div>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="24">
+          <h3 class="study-attachments-title">附件</h3>
+          <el-table :data="study.phStudyFileList" stripe border>
+            <el-table-column
+              property="fileName"
+              label="文件名"
+            ></el-table-column>
+            <el-table-column
+              property="fileType"
+              label="文件类型"
+            ></el-table-column>
+            <el-table-column label="操作" width="180">
+              <template slot-scope="scope">
+                <el-button
+                  type="primary"
+                  size="small"
+                  @click="downloadFile(scope.row)"
+                  >下载</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-col>
+      </el-row>
     </el-card>
   </div>
 </template>
@@ -54,6 +79,9 @@ export default {
         this.studyContent = response.data;
       });
     },
+    downloadFile(file) {
+      window.open(file.fileUrl);
+    },
   },
   created() {
     this.loadStudyDetail();
@@ -62,6 +90,7 @@ export default {
 </script>
 
 <style>
+
 .study-container {
   max-width: 800px;
   margin: 0 auto;
@@ -70,33 +99,52 @@ export default {
 
 .study-card {
   margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 .study-title {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
   color: #333;
-  margin: 10px 0;
+  margin: 20px 0;
+  text-align: center;
 }
 
 .study-description {
-  font-size: 16px;
+  font-size: 18px;
   color: #666;
-  margin: 10px 0;
+  margin: 20px 0;
+  padding: 10px;
+  border-left: 3px solid #666;
+  background-color: #f0f0f0;
 }
 
 .study-image {
   width: 100%;
   height: auto;
-  /* max-height: 300px; */
   object-fit: contain;
-  margin: 10px 0;
+  margin: 30px 0;
 }
 
 .study-content {
   font-size: 14px;
   color: #333;
   line-height: 1.5;
-  margin: 10px 0;
+  margin: 30px 0;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 20px;
 }
+
+.study-attachments-title {
+  margin: 30px 0;
+  font-size: 20px;
+  font-weight: bold;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 20px;
+}
+
 </style>
+
