@@ -143,7 +143,7 @@ export default {
             this.form.isPassed = totalScore >= this.contest.acceptanceLine;
             this.form.endTime = new Date().getTime();
             this.form.quizActivityId = this.quizActivityId;
-            this.form.activityState = "completed";
+            this.form.activityState = "发布";
             this.form.userId = this.userInfo.userId;
             console.log(this.form);
             addContest_rec(this.form);
